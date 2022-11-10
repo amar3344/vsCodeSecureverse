@@ -1,0 +1,281 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins";
+}
+
+.bg-container {
+  width: 100% !important;
+  background-image: linear-gradient(to right, #000000, #262652);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+
+
+}
+
+@media(min-width:992px) {
+  .bg-container {
+      width: 100% !important;
+      height: 100%;
+  }
+
+}
+
+@media(min-width:992px) {
+  .button-container {
+      display: flex;
+      align-items: center;
+  }
+}
+
+.connect-button {
+  background-color: #057ef7;
+  width: 100%;
+  height: 30px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 15px;
+  font-family: "Roboto";
+}
+
+.Container {
+  display: flex;
+}
+
+.drop-down-button {
+  width: 80px;
+  height: 40px;
+  border-left: none;
+  border-right: 2px;
+  border-color: #000000;
+  border-top: none;
+  border-bottom: none;
+}
+
+.drop-down-text {
+  font: 20px "Roboto"400;
+  color: #000000;
+  border: none;
+
+}
+
+.from-text {
+  font-size: 15px;
+  font-weight: 500;
+  font-family: "Roboto";
+  color: #000000;
+}
+
+.header-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.heading {
+  font-size: 30px;
+  font-family: "Roboto";
+  font-weight: 500;
+  color: #ffffff;
+  width: 300px;
+  align-self: center;
+}
+
+@media (min-width:992px) {
+  .heading {
+      width: 500px;
+      align-self: center;
+  }
+}
+
+
+
+
+.logo-image {
+  background-size: cover;
+  max-width: 150px;
+  max-height: 150px;
+  background-color: transparent;
+}
+
+.logo-text {
+  font-size: 20px;
+  font-family: "Roboto";
+  font-weight: 400;
+  color: #b5a8a7;
+  text-align: center;
+}
+
+.login-button {
+  border: none;
+  background-color: #ffffff;
+  font-size: 15px;
+  font-family: "Roboto";
+  cursor: pointer;
+  border-radius: 10px;
+  width: 100px;
+  margin: 10px;
+}
+
+.listEle {
+  font-size: 18px;
+  font-weight: 500;
+  font-family: "Roboto";
+  color: #000000;
+  list-style-type: none;
+}
+
+.main-container {
+  width: 100% !important;
+  height: 100%;
+  display: flex;
+  /*justify-content: center;*/
+
+}
+
+@media(min-width:992px) {
+  .main-container {
+      height: 100%;
+      max-width: 100% !important;
+  }
+}
+
+
+.result-container {
+  width: 80%;
+  border: 1px solid #000000;
+  border-radius: 15px;
+  height: 100%;
+  background-color: #ffffff;
+  align-self: center;
+  padding: 10px;
+}
+
+
+
+.result-text {
+  font-size: 15px;
+  font-weight: 500;
+  font-family: "Roboto";
+  color: #84f078;
+
+}
+
+.rowEle {
+  width: 100%;
+}
+
+.search-container {
+  width: 90%;
+  height: 50px;
+  border: 1px solid #000000;
+  border-radius: 10px;
+  background-color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-self: center;
+  margin-top: 50px;
+}
+
+.search-element {
+  border-left: 1px;
+  border-color: #000000;
+  border-right: none;
+  border-top: none;
+  border-bottom: none;
+  width: 100%;
+
+}
+
+.search-input {
+  border-left: 1px;
+  border-color: #000000;
+  border-right: none;
+  border-top: none;
+  border-bottom: none;
+  padding: 10px;
+  font-size: 15px;
+  color: #000000;
+  border-radius: 10px;
+  width: 100%;
+
+}
+
+.search-image-container {
+  background-color: #057ef7;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 50px;
+  height: 100%;
+  border-radius: 10px;
+}
+
+.search-image {
+  width: 15px;
+  height: 15px;
+  background-size: cover;
+}
+
+.search-address-button {
+  width: 100px;
+  height: 50px;
+  border: none;
+  border-radius: 10px;
+  background-color: #057ef7;
+  margin: 10px;
+  font-size: 15px;
+  align-self: center;
+}
+
+.to-text {
+  font-size: 15px;
+  font-weight: 500;
+  font-family: "Roboto";
+  color: #000000;
+}
+
+.transactionEle-text {
+  font-size: 15px;
+  font-weight: 500;
+  font-family: "Roboto";
+  color: #000000;
+
+
+}
+
+table,
+th,
+td {
+  border: 1px solid black;
+  padding: 5px 1px;
+  border-collapse: collapse;
+  border-color: #ffffff;
+  color: #ffffff;
+  font-size: 13px;
+
+}
+
+table {
+  width: 100%;
+}
+
+tr {
+  text-align: center;
+  width: 100%;
+
+}
+
+td {
+  width: 100%;
+}
+
+tbody {
+  width: 100%;
+}
