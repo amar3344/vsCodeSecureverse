@@ -54,6 +54,8 @@
   border-color: #000000;
   border-top: none;
   border-bottom: none;
+  background-color: #393061;
+  color: #fff;
 }
 
 .drop-down-text {
@@ -153,6 +155,7 @@
   background-color: #ffffff;
   align-self: center;
   padding: 10px;
+  margin-bottom: 30px;
 }
 
 
@@ -172,9 +175,9 @@
 .search-container {
   width: 90%;
   height: 50px;
-  border: 1px solid #000000;
+  border: none;
   border-radius: 10px;
-  background-color: #ffffff;
+  background-color: #393061;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -189,6 +192,8 @@
   border-top: none;
   border-bottom: none;
   width: 100%;
+  background-color: #393061;
+  color: #fff;
 
 }
 
@@ -203,6 +208,8 @@
   color: #000000;
   border-radius: 10px;
   width: 100%;
+  background-color: #393061;
+  color: #fff;
 
 }
 
@@ -226,12 +233,13 @@
 .search-address-button {
   width: 100px;
   height: 50px;
-  border: none;
+  border: 1px solid #393061;
   border-radius: 10px;
-  background-color: #057ef7;
+  background-color: transparent;
   margin: 10px;
   font-size: 15px;
   align-self: center;
+  color: #fff;
 }
 
 .to-text {

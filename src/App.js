@@ -1,6 +1,8 @@
 import {Component} from "react"
 //import { render } from '@testing-library/react';
+
 import './App.css';
+import TableBody from "./Component/TableBody";
 //import TableBody from "./Component/TableBody"
 import logoImage from './logo-image.webp'
 
@@ -17,7 +19,7 @@ class App extends Component {
             const apiKey = "IW9FKB2254UUN54IE52QKMQCIYNF61R4X5";
             
             let url = "https://api.etherscan.io/api?module=account&action=txlist&address=" + input + "&startblock=0&endblock=99999999&page=1&offset=10&sort=desc&apikey=" + apiKey;
-            console.log(url);
+            //console.log(url);
             //url = "https://api.etherscan.io/api?module=account&action=txlist&address=0x6dfc34609a05bC22319fA4Cce1d1E2929548c0D7&startblock=0&endblock=99999999&page=1&offset=10&sort=desc&apikey=IW9FKB2254UUN54IE52QKMQCIYNF61R4X5"
         
             let options = {
@@ -59,6 +61,19 @@ class App extends Component {
             
         }*/
 
+        getTableBody=()=>{
+            const {transactionResults} = this.state
+
+            for (let i=1;i<transactionResults.length;i++){
+                <TableBody columns = {i} details={transactionResults[i]}/>
+            }
+                    
+
+                
+            }
+            
+        
+
         getTransactionType(from){
             if(from.toString() === input.toString()){
                 return "OUTGOING"
@@ -76,6 +91,7 @@ class App extends Component {
         render(){
             const {transactionResults}  = this.state;
             //console.log(transactionResults)
+            //transactionResults.map(eachTransaction => console.log(eachTransaction))
             let recentTransaction = [];
             if(transactionResults[0] !== undefined){
                 recentTransaction = transactionResults[0]
@@ -116,7 +132,7 @@ class App extends Component {
                                 <input type="search" className="search-input" placeholder="add address here" onChange={this.gettingInputValue}/>
                             </div>
                         </div>
-                        <button type="button" className="search-address-button" id="GetDetails" onClick={this.getdetailsFromUrl}>Get Details</button>
+                        <button type="button" className="search-address-button" id="GetDetails" onClick={this.getdetailsFromUrl}>Scan Now</button>
             
                         <ul className="result-container" id="resultContainer">
                             <li className="listEle">Transaction Details :
@@ -141,7 +157,10 @@ class App extends Component {
                                     <th>Type of Transaction</th>
                                 </tr>
                             </thead>
-                            <tbody></tbody>
+                            <tbody>
+                            {this.getTableBody()}
+                            </tbody>
+                            
                         </table>
                     </div>
                 </div>
