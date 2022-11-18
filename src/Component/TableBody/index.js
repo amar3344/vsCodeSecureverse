@@ -1,43 +1,36 @@
 import './index.css'
-import { useTable } from "react-table";
 
-const TableBody = (columns,details)=>{
-    const{getTableBodyProps,rows,prepareRow} = useTable({columns, details});
 
-    return(
-        <tbody {...getTableBodyProps}>
-            {rows.map((row,i) => {
-                prepareRow(row);
-                return (
-                    <tr {...row.getRowProps()}>
-                        {row.cells.map(cell => {
-                            return <td {...cell.getCellProps()}>{cell.render("Cell")}</td>
-                        })}
-                    </tr>
-                )
-            })}
+const TableBody = (props) =>{
+    const inputTransaction = props.input
+    console.log(inputTransaction)
+    
+    const {details} = props
+    //console.log(details)
+    const {from,to,hash,blockNumber,value,timeStamp,} = details
+    const amount = value/(10 ** 18)
+    let timedate = timeStamp * 1000
+    timedate = new Date(timedate)
+    timedate = timedate.toDateString()
 
-        </tbody>
-    )
-
-    /*
-    const {details} = this.props
-    console.log(details)
-    const {from,to,hash,blockNumber,value,timeStamp} = details
+    const transactionType = from.toString() === inputTransaction.toString() ? "OUTGOING" : "INCOMING"
+    console.log(transactionType)
+    //console.log(from)
 
     return(
         <tr>
         <td>{from}</td>
         <td>{to}</td>
+        <td>{amount}</td>
+        <td>{timedate}</td>
         <td>{hash}</td>
         <td>{blockNumber}</td>
-        <td>{value}</td>
-        <td>{timeStamp}</td>
+        <td>{transactionType}</td>
         </tr>
         
 
     )
-    */
+    
 
 }
 

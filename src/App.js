@@ -1,9 +1,8 @@
 import {Component} from "react"
-//import { render } from '@testing-library/react';
 
 import './App.css';
-import TableBody from "./Component/TableBody";
-//import TableBody from "./Component/TableBody"
+import TableBody from "./Component/TableBody/index";
+
 import logoImage from './logo-image.webp'
 
 let input =""
@@ -20,7 +19,6 @@ class App extends Component {
             
             let url = "https://api.etherscan.io/api?module=account&action=txlist&address=" + input + "&startblock=0&endblock=99999999&page=1&offset=10&sort=desc&apikey=" + apiKey;
             //console.log(url);
-            //url = "https://api.etherscan.io/api?module=account&action=txlist&address=0x6dfc34609a05bC22319fA4Cce1d1E2929548c0D7&startblock=0&endblock=99999999&page=1&offset=10&sort=desc&apikey=IW9FKB2254UUN54IE52QKMQCIYNF61R4X5"
         
             let options = {
                 method: "GET"
@@ -44,36 +42,9 @@ class App extends Component {
                 });
                 //await console.log(newResults)
             this.setState({transactionResults : newResults})
-            //setInterval(getdetailsFromUrl, 5000);
+            setInterval(this.getdetailsFromUrl(), 5000);
         }
-
-        /*async getTableBody(){
-            const {transactionResults} = this.state
-            if(transactionResults !== undefined){
-                return(
-                    <tr>
-                        {transactionResults.map((eachTransaction,index) =>
-                    <TableBody key = {index} tableBodyDetails = {eachTransaction}/>)}
-                    </tr>
-                )
-
-            }
             
-        }*/
-
-        getTableBody=()=>{
-            const {transactionResults} = this.state
-
-            for (let i=1;i<transactionResults.length;i++){
-                <TableBody columns = {i} details={transactionResults[i]}/>
-            }
-                    
-
-                
-            }
-            
-        
-
         getTransactionType(from){
             if(from.toString() === input.toString()){
                 return "OUTGOING"
@@ -105,16 +76,14 @@ class App extends Component {
             }
             
 
-            return (
+            return (   
                 <div className="main-container">
                     <div className="bg-container">
                         <div className="header-container">
                             <div>
                                 <img src={logoImage} alt="logo" className="logo-image" />
                                 <p className="logo-text">Etherum</p>
-            
                             </div>
-            
                             <h1 className="heading">Welcome to Securevers's Wallet tracking</h1>
                             <div className="button-container">
                                 <button type="button" className="login-button">Login</button>
@@ -157,15 +126,18 @@ class App extends Component {
                                     <th>Type of Transaction</th>
                                 </tr>
                             </thead>
-                            <tbody>
-                            {this.getTableBody()}
-                            </tbody>
-                            
+                            <tbody> {
+                                transactionResults.map((eachTransaction,index) =>{
+                                    return(
+                                        <TableBody key={index} details = {eachTransaction} input={input}/>
+                                )
+                                })
+                                }
+                            </tbody>  
                         </table>
                     </div>
-                </div>
+                </div> 
               );
-
     }
 
   }
