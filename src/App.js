@@ -10,15 +10,39 @@ let newResults = {}
 let amount = null
 let recentTime = null;
 let typeofTransaction = null
+var intervalId = null
+let url = null
+let apiKey = null
+
+let transactionTabs = [
+    {
+    id : 0,
+    displayText : "Internal Transactions"
+
+},
+{
+    id : 1,
+    displayText : "ETH Transactions"
+}
+
+]
 
 class App extends Component {
-    state = {transactionResults :[],message : ""}
+    state = {transactionResults :[],message : "",activeTabId:transactionTabs[0].displayText}
+ 
+    stopTransactionsFromUrl = () =>{
+        //console.log("a")
+        clearInterval(intervalId)
+
+    }
 
         getdetailsFromUrl = async() =>{
-            const apiKey = "IW9FKB2254UUN54IE52QKMQCIYNF61R4X5";
+            apiKey = "IW9FKB2254UUN54IE52QKMQCIYNF61R4X5";
             
-            let url = "https://api.etherscan.io/api?module=account&action=txlist&address=" + input + "&startblock=0&endblock=99999999&page=1&offset=10&sort=desc&apikey=" + apiKey;
+            url = "https://api.etherscan.io/api?module=account&action=txlist&address=" + input + "&startblock=0&endblock=99999999&page=1&offset=10&sort=desc&apikey=" + apiKey;
             //console.log(url);
+            let ercUrl = "https://api.etherscan.io/api?module=account&action=tokentx&address=" + input + "&page=1&offset=100&startblock=0&endblock=27025780&sort=desc&apikey=" + apiKey
+            console.log(ercUrl)
         
             let options = {
                 method: "GET"
@@ -28,6 +52,7 @@ class App extends Component {
                 .then(function(response) {
                     return response.json();
                 })
+
 
                 .then(async function(jsonData) {
                     let resultsData = await jsonData;
@@ -40,13 +65,13 @@ class App extends Component {
                     }
 
                 });
-                //await console.log(newResults)
             this.setState({transactionResults : newResults})
-            setInterval(this.getdetailsFromUrl(), 5000);
+            //intervalId = setInterval(this.getdetailsFromUrl(), 5000);
+
         }
             
         getTransactionType(from){
-            if(from.toString() === input.toString()){
+            if(from.toString().toLowerCase() === input.toString().toLowerCase()){
                 return "OUTGOING"
             }else{
                 return "INCOMING"
@@ -60,8 +85,9 @@ class App extends Component {
 
 
         render(){
-            const {transactionResults}  = this.state;
-            //console.log(transactionResults)
+            const {transactionResults,activeTabId}  = this.state;
+            
+            console.log(transactionResults)
             //transactionResults.map(eachTransaction => console.log(eachTransaction))
             let recentTransaction = [];
             if(transactionResults[0] !== undefined){
@@ -75,6 +101,7 @@ class App extends Component {
                 //console.log(typeofTransaction)
             }
             
+            let classNameTypeofTransaction = typeofTransaction === "OUTGOING" ?  "type-transaction-outcome" : "type-transaction-income"
 
             return (   
                 <div className="main-container">
@@ -101,8 +128,11 @@ class App extends Component {
                                 <input type="search" className="search-input" placeholder="add address here" onChange={this.gettingInputValue}/>
                             </div>
                         </div>
-                        <button type="button" className="search-address-button" id="GetDetails" onClick={this.getdetailsFromUrl}>Scan Now</button>
-            
+                        <div className="button-container-stop-start">
+                            <button type="button" className="search-address-button" id="GetDetails" onClick={this.getdetailsFromUrl}>Scan Now</button>
+                            <button type="button" className="stop-address-button" id="stopDetails" onClick={this.stopTransactionsFromUrl}>Stop Scan</button>
+                        </div>
+
                         <ul className="result-container" id="resultContainer">
                             <li className="listEle">Transaction Details :
                                 <p className="from-text">FROM : <span id="fromText" className="result-text">{recentTransaction.from}</span></p>
@@ -111,9 +141,16 @@ class App extends Component {
                                 <p className="from-text">Time : <span id="timeText" className="result-text">{recentTime}</span></p>
                                 <p className="from-text">Hash Number : <span id="hashNumberText" className="result-text">{recentTransaction.hash}</span></p>
                                 <p className="from-text">Block Number : <span id="BlockNumberText" className="result-text">{recentTransaction.blockNumber}</span></p>
-                                <p className="from-text">Type of Transaction : <span id="typeoftransactionText" className="result-text">{typeofTransaction}</span></p>
+                                <p className="from-text">Type of Transaction : <span id="typeoftransactionText" className = {`result-text ${classNameTypeofTransaction}`}>{typeofTransaction}</span></p>
                             </li>
                         </ul>
+                        <div className="button-tabs-container">
+                            <button type="button" className="tab-buttons" onClick={this.getdetailsFromUrl}>Internal Transactions</button>
+                            <button type="button" className="tab-buttons" onClick={this.getEthTokenTransactions}>Eth20 Transactions</button>
+                        </div>
+                        <div className="tabs-container">
+                            <h1 className="active-tabs">{activeTabId}</h1>
+                        </div>
                         <table>
                             <thead>
                                 <tr>
@@ -140,6 +177,9 @@ class App extends Component {
               );
     }
 
+
   }
+
+  
 
 export default App;

@@ -3,7 +3,7 @@ import './index.css'
 
 const TableBody = (props) =>{
     const inputTransaction = props.input
-    console.log(inputTransaction)
+    //console.log(inputTransaction)
     
     const {details} = props
     //console.log(details)
@@ -13,8 +13,9 @@ const TableBody = (props) =>{
     timedate = new Date(timedate)
     timedate = timedate.toDateString()
 
-    const transactionType = from.toString() === inputTransaction.toString() ? "OUTGOING" : "INCOMING"
-    console.log(transactionType)
+    const transactionType = from.toString().toLowerCase() === inputTransaction.toString().toLowerCase() ? "OUTGOING" : "INCOMING"
+    const classNameTypeofTransaction = transactionType === "INCOMING" ? "transaction-type-incoming" : "transaction-type-outgoing"
+    //console.log(transactionType)
     //console.log(from)
 
     return(
@@ -25,7 +26,7 @@ const TableBody = (props) =>{
         <td>{timedate}</td>
         <td>{hash}</td>
         <td>{blockNumber}</td>
-        <td>{transactionType}</td>
+        <td className={classNameTypeofTransaction}>{transactionType}</td>
         </tr>
         
 

@@ -16,6 +16,11 @@
 
 }
 
+.active-tabs{
+  color: #fff;
+  margin: 10px;
+}
+
 @media(min-width:992px) {
   .bg-container {
       width: 100% !important;
@@ -29,6 +34,18 @@
       display: flex;
       align-items: center;
   }
+}
+
+.button-container-stop-start{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.button-tabs-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .connect-button {
@@ -240,6 +257,22 @@
   font-size: 15px;
   align-self: center;
   color: #fff;
+  cursor: pointer;
+}
+
+.stop-address-button{
+
+  width: 100px;
+  height: 50px;
+  border: 1px solid #393061;
+  border-radius: 10px;
+  background-color: red;
+  margin: 10px;
+  font-size: 15px;
+  align-self: center;
+  color: #fff;
+  cursor: pointer;
+
 }
 
 .to-text {
@@ -286,4 +319,33 @@ td {
 
 tbody {
   width: 100%;
+}
+
+.type-transaction-outcome{
+  background-color: red;
+}
+
+.type-transaction-income{
+  background-color: green;
+}
+
+.tabs-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.tab-buttons{
+  background-color: lightblue;
+  color: #000;
+  font-size: 30px;
+  font-family: "Roboto" ;
+  font-size: 500;
+  border: none;
+  cursor: pointer;
+  margin: 20px;
+  padding: 10px;
+  border-radius: 10px;
+
+
 }
