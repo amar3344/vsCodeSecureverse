@@ -1,18 +1,24 @@
 import {Component} from "react"
 
 import './App.css';
+import TableEth20 from "./Component/TableEth20/index"
 import TableBody from "./Component/TableBody/index";
+import ActiveTabs from "./Component/ActiveTabs/index"
+
 
 import logoImage from './logo-image.webp'
 
 let input =""
-let newResults = {}
+let newResults = null
 let amount = null
 let recentTime = null;
 let typeofTransaction = null
 var intervalId = null
-let url = null
 let apiKey = null
+let options = {
+    method: "GET"
+};
+apiKey = "IW9FKB2254UUN54IE52QKMQCIYNF61R4X5";
 
 let transactionTabs = [
     {
@@ -22,7 +28,7 @@ let transactionTabs = [
 },
 {
     id : 1,
-    displayText : "ETH Transactions"
+    displayText : "Eth20 Transactions"
 }
 
 ]
@@ -37,40 +43,67 @@ class App extends Component {
     }
 
         getdetailsFromUrl = async() =>{
-            apiKey = "IW9FKB2254UUN54IE52QKMQCIYNF61R4X5";
+
+            if(input === ""){
+                alert("Please Enter Valid Address")
+            }
+            else{
+                let url = "https://api.etherscan.io/api?module=account&action=txlist&address=" + input + "&startblock=0&endblock=99999999&page=1&offset=10&sort=desc&apikey=" + apiKey;
+                //console.log(url);
             
-            url = "https://api.etherscan.io/api?module=account&action=txlist&address=" + input + "&startblock=0&endblock=99999999&page=1&offset=10&sort=desc&apikey=" + apiKey;
-            //console.log(url);
+                await fetch(url, options)
+                    .then(function(response) {
+                        return response.json();
+                    })
+    
+    
+                    .then(async function(jsonData) {
+                        let resultsData = await jsonData;
+                        let {message,result} = resultsData
+                        
+                        if (message === "OK") {
+                            newResults = result
+                            return newResults
+        
+                        }
+    
+                    });
+                this.setState({transactionResults : newResults})
+                //intervalId = setInterval(this.getdetailsFromUrl(), 5000);
+
+            }
+            
+
+
+        }
+
+        getTransactionsFromEther20 = async() =>{
             let ercUrl = "https://api.etherscan.io/api?module=account&action=tokentx&address=" + input + "&page=1&offset=100&startblock=0&endblock=27025780&sort=desc&apikey=" + apiKey
             console.log(ercUrl)
-        
-            let options = {
-                method: "GET"
-            };
-        
-            await fetch(url, options)
-                .then(function(response) {
-                    return response.json();
-                })
 
+            fetch(ercUrl,options)
+            .then(function(response){
+                return response.json()
+            })
 
-                .then(async function(jsonData) {
-                    let resultsData = await jsonData;
-                    let {message,result} = resultsData
+            .then(async function(jsonData){
+                 let resultsDataEther = await jsonData;
+                    let {message,result} = resultsDataEther
                     
                     if (message === "OK") {
-                        newResults = result
+                        newResults = await result
+                        //console.log(newResults)
                         return newResults
     
                     }
 
-                });
+            })
             this.setState({transactionResults : newResults})
-            //intervalId = setInterval(this.getdetailsFromUrl(), 5000);
+            //intervalId = setInterval(this.getTransactionsFromEther20(), 5000);
 
         }
             
-        getTransactionType(from){
+        getTransactionType=(from)=>{
             if(from.toString().toLowerCase() === input.toString().toLowerCase()){
                 return "OUTGOING"
             }else{
@@ -83,11 +116,85 @@ class App extends Component {
 
         }
 
+        updateActiveTab = (id) =>{
+            const {activeTabId} = this.state
+            this.setState({activeTabId : transactionTabs[id].displayText,transactionResults : newResults})
+            console.log(activeTabId)
+
+            activeTabId === "Internal Transactions" ? this.getdetailsFromUrl() : this.getTransactionsFromEther20()
+
+            
+        }
+
+        getTableInternalTransactions =() =>{
+            const {transactionResults,activeTabId} = this.state
+            return(
+                <>
+                <h1 className="active-tabs" style={{"text-align":"center"}}>{activeTabId}</h1>        
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>From Wallet Address</th>
+                                    <th>To Wallet Address</th>
+                                    <th>Transaction Amount</th>
+                                    <th>Time</th>
+                                    <th>Hash Number</th>
+                                    <th>Block Number</th>
+                                    <th>Type of Transaction</th>
+                                </tr>
+                            </thead>
+                            <tbody> {
+                                transactionResults.map((eachTransaction,index) =>{
+                                    return(
+                                        <TableBody key={index} details = {eachTransaction} input={input}/>
+                                )
+                                })
+                                }
+                            </tbody>  
+                        </table>
+                </>
+            )
+        }
+
+        getTableEth20Transactions = () =>{
+            const {transactionResults,activeTabId} = this.state
+            console.log(transactionResults)
+
+            return(
+                <>
+                <h1 className="active-tabs" style={{"text-align":"center"}}>{activeTabId}</h1>        
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>From Wallet Address</th>
+                                    <th>To Wallet Address</th>
+                                    <th>Transaction Amount</th>
+                                    <th>Time</th>
+                                    <th>Hash Number</th>
+                                    <th>blockNumber</th>
+                                    <th>tokenSymbol</th>
+                                    <th>Type of Transaction</th>
+                                </tr>
+                            </thead>
+                            <tbody> {
+                                transactionResults.map((eachTransaction,index) =>{
+                                    return(
+                                        <TableEth20 key={index} detailsE20 = {eachTransaction} input={input}/>
+                                )
+                                })
+                                }
+                            </tbody>  
+                        </table>
+                
+                </>
+            )
+        }
+
 
         render(){
             const {transactionResults,activeTabId}  = this.state;
             
-            console.log(transactionResults)
+            //console.log(transactionResults)
             //transactionResults.map(eachTransaction => console.log(eachTransaction))
             let recentTransaction = [];
             if(transactionResults[0] !== undefined){
@@ -144,34 +251,14 @@ class App extends Component {
                                 <p className="from-text">Type of Transaction : <span id="typeoftransactionText" className = {`result-text ${classNameTypeofTransaction}`}>{typeofTransaction}</span></p>
                             </li>
                         </ul>
-                        <div className="button-tabs-container">
-                            <button type="button" className="tab-buttons" onClick={this.getdetailsFromUrl}>Internal Transactions</button>
-                            <button type="button" className="tab-buttons" onClick={this.getEthTokenTransactions}>Eth20 Transactions</button>
-                        </div>
-                        <div className="tabs-container">
-                            <h1 className="active-tabs">{activeTabId}</h1>
-                        </div>
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>From Wallet Address</th>
-                                    <th>To Wallet Address</th>
-                                    <th>Transaction Amount</th>
-                                    <th>Time</th>
-                                    <th>Hash Number</th>
-                                    <th>Block Number</th>
-                                    <th>Type of Transaction</th>
-                                </tr>
-                            </thead>
-                            <tbody> {
-                                transactionResults.map((eachTransaction,index) =>{
-                                    return(
-                                        <TableBody key={index} details = {eachTransaction} input={input}/>
-                                )
-                                })
-                                }
-                            </tbody>  
-                        </table>
+                        <ul className="button-tabs-container">
+                            {transactionTabs.map(eachTab =>(
+                                <ActiveTabs key={eachTab.id} tabDetails={eachTab} updateActiveTab = {this.updateActiveTab}/>
+                            ))}
+                        </ul>
+                        
+                        {activeTabId === "Internal Transactions" ? this.getTableInternalTransactions() : this.getTableEth20Transactions()}    
+                        
                     </div>
                 </div> 
               );
