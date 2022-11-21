@@ -13,7 +13,7 @@ let newResults = null
 let amount = null
 let recentTime = null;
 let typeofTransaction = null
-var intervalId = null
+let intervalId = null
 let apiKey = null
 let options = {
     method: "GET"
@@ -35,6 +35,11 @@ let transactionTabs = [
 
 class App extends Component {
     state = {transactionResults :[],message : "",activeTabId:transactionTabs[0].displayText}
+
+    componentWillUnmount(){
+        clearInterval(intervalId)
+        
+    }
  
     stopTransactionsFromUrl = () =>{
         //console.log("a")
@@ -69,7 +74,7 @@ class App extends Component {
     
                     });
                 this.setState({transactionResults : newResults})
-                //intervalId = setInterval(this.getdetailsFromUrl(), 5000);
+                intervalId = setInterval(this.getdetailsFromUrl, 5000);
 
             }
             
@@ -99,7 +104,7 @@ class App extends Component {
 
             })
             this.setState({transactionResults : newResults})
-            //intervalId = setInterval(this.getTransactionsFromEther20(), 5000);
+            intervalId = setInterval(this.getTransactionsFromEther20, 5000);
 
         }
             
