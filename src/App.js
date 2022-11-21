@@ -81,7 +81,7 @@ class App extends Component {
             let ercUrl = "https://api.etherscan.io/api?module=account&action=tokentx&address=" + input + "&page=1&offset=100&startblock=0&endblock=27025780&sort=desc&apikey=" + apiKey
             console.log(ercUrl)
 
-            fetch(ercUrl,options)
+            await fetch(ercUrl,options)
             .then(function(response){
                 return response.json()
             })
@@ -118,10 +118,11 @@ class App extends Component {
 
         updateActiveTab = (id) =>{
             const {activeTabId} = this.state
+            activeTabId !== "Internal Transactions" ? this.getdetailsFromUrl() : this.getTransactionsFromEther20()
             this.setState({activeTabId : transactionTabs[id].displayText,transactionResults : newResults})
-            console.log(activeTabId)
+            //console.log(activeTabId)
 
-            activeTabId === "Internal Transactions" ? this.getdetailsFromUrl() : this.getTransactionsFromEther20()
+            
 
             
         }
@@ -158,7 +159,7 @@ class App extends Component {
 
         getTableEth20Transactions = () =>{
             const {transactionResults,activeTabId} = this.state
-            console.log(transactionResults)
+            //console.log(transactionResults)
 
             return(
                 <>
@@ -193,6 +194,7 @@ class App extends Component {
 
         render(){
             const {transactionResults,activeTabId}  = this.state;
+            //console.log(activeTabId)
             
             //console.log(transactionResults)
             //transactionResults.map(eachTransaction => console.log(eachTransaction))
