@@ -14,7 +14,9 @@ let amount = null
 let recentTime = null;
 let typeofTransaction = null
 let intervalId = null
+let etherInterval = null
 let apiKey = null
+let a = null
 let options = {
     method: "GET"
 };
@@ -36,14 +38,11 @@ let transactionTabs = [
 class App extends Component {
     state = {transactionResults :[],message : "",activeTabId:transactionTabs[0].displayText}
 
-    componentWillUnmount(){
-        clearInterval(intervalId)
-        
-    }
- 
     stopTransactionsFromUrl = () =>{
         //console.log("a")
         clearInterval(intervalId)
+        clearInterval(etherInterval)
+        clearInterval(a)
 
     }
 
@@ -74,7 +73,7 @@ class App extends Component {
     
                     });
                 this.setState({transactionResults : newResults})
-                intervalId = setInterval(this.getdetailsFromUrl, 5000);
+                //intervalId = setInterval(this.getdetailsFromUrl, 5000);
 
             }
             
@@ -104,7 +103,7 @@ class App extends Component {
 
             })
             this.setState({transactionResults : newResults})
-            intervalId = setInterval(this.getTransactionsFromEther20, 5000);
+            //intervalId = setInterval(this.getTransactionsFromEther20, 5000);
 
         }
             
@@ -121,15 +120,26 @@ class App extends Component {
 
         }
 
+        getTransactionsFromUrl = () =>{
+            intervalId = setInterval(this.getdetailsFromUrl, 3000);
+            clearInterval(etherInterval)
+            clearInterval(a)
+        }
+
+        getTransactionsFromEther20Url = () => {
+            etherInterval = setInterval(this.getTransactionsFromEther20, 3000);
+            clearInterval(intervalId)
+            clearInterval(a)
+
+        }
+
+
+
         updateActiveTab = (id) =>{
             const {activeTabId} = this.state
-            activeTabId !== "Internal Transactions" ? this.getdetailsFromUrl() : this.getTransactionsFromEther20()
+            activeTabId !== "Internal Transactions" ? this.getTransactionsFromUrl() : this.getTransactionsFromEther20Url()
             this.setState({activeTabId : transactionTabs[id].displayText,transactionResults : newResults})
-            //console.log(activeTabId)
-
-            
-
-            
+            //console.log(activeTabId)    
         }
 
         getTableInternalTransactions =() =>{
@@ -196,6 +206,10 @@ class App extends Component {
             )
         }
 
+        setIntervaldetailasUrl = () =>{
+            a = setInterval(this.getdetailsFromUrl,3000)
+        }
+
 
         render(){
             const {transactionResults,activeTabId}  = this.state;
@@ -243,7 +257,7 @@ class App extends Component {
                             </div>
                         </div>
                         <div className="button-container-stop-start">
-                            <button type="button" className="search-address-button" id="GetDetails" onClick={this.getdetailsFromUrl}>Scan Now</button>
+                            <button type="button" className="search-address-button" id="GetDetails" onClick={this.setIntervaldetailasUrl}>Scan Now</button>
                             <button type="button" className="stop-address-button" id="stopDetails" onClick={this.stopTransactionsFromUrl}>Stop Scan</button>
                         </div>
 
