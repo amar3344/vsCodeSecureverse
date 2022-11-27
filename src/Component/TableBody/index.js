@@ -7,8 +7,9 @@ const TableBody = (props) =>{
     
     const {details} = props
     //console.log(details)
-    const {from,to,hash,blockNumber,value,timeStamp,} = details
-    const amount = value/(10 ** 18)
+    const {from,to,hash,value,timeStamp,} = details
+    let amount = value/(10 ** 18)
+    amount = Math.round(amount)
     let timedate = timeStamp * 1000
     timedate = new Date(timedate)
     timedate = timedate.toDateString()
@@ -22,10 +23,9 @@ const TableBody = (props) =>{
         <tr>
         <td>{from}</td>
         <td>{to}</td>
-        <td>{amount}</td>
-        <td>{timedate}</td>
+        <td className="time-text">{timedate}</td>
         <td>{hash}</td>
-        <td>{blockNumber}</td>
+        <td>{amount}</td>
         <td className={classNameTypeofTransaction}>{transactionType}</td>
         </tr>
         

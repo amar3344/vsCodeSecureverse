@@ -38,6 +38,12 @@ let transactionTabs = [
 class App extends Component {
     state = {transactionResults :[],message : "",activeTabId:transactionTabs[0].displayText}
 
+    componentDidUnMount(){
+        this.getdetailsFromUrl()
+        this.getTransactionsFromEther20()
+
+    }
+
     stopTransactionsFromUrl = () =>{
         //console.log("a")
         clearInterval(intervalId)
@@ -127,7 +133,7 @@ class App extends Component {
         }
 
         getTransactionsFromEther20Url = () => {
-            etherInterval = setInterval(this.getTransactionsFromEther20, 3000);
+            etherInterval = setInterval(this.getTransactionsFromEther20, 2000);
             clearInterval(intervalId)
             clearInterval(a)
 
@@ -152,10 +158,9 @@ class App extends Component {
                                 <tr>
                                     <th>From Wallet Address</th>
                                     <th>To Wallet Address</th>
-                                    <th>Transaction Amount</th>
-                                    <th>Time</th>
+                                    <th className="time-text">Time</th>
                                     <th>Hash Number</th>
-                                    <th>Block Number</th>
+                                    <th>Transaction Amount</th>
                                     <th>Type of Transaction</th>
                                 </tr>
                             </thead>
@@ -174,7 +179,7 @@ class App extends Component {
 
         getTableEth20Transactions = () =>{
             const {transactionResults,activeTabId} = this.state
-            //console.log(transactionResults)
+            console.log(transactionResults)
 
             return(
                 <>
@@ -184,12 +189,13 @@ class App extends Component {
                                 <tr>
                                     <th>From Wallet Address</th>
                                     <th>To Wallet Address</th>
-                                    <th>Transaction Amount</th>
                                     <th>Time</th>
                                     <th>Hash Number</th>
-                                    <th>blockNumber</th>
+                                    <th>Transaction Amount</th>
                                     <th>tokenSymbol</th>
                                     <th>Type of Transaction</th>
+                                    
+                                    
                                 </tr>
                             </thead>
                             <tbody> {
@@ -221,6 +227,7 @@ class App extends Component {
             if(transactionResults[0] !== undefined){
                 recentTransaction = transactionResults[0]
                 amount = (recentTransaction.value)/(10 ** 18)
+                amount = Math.round(amount)
                 recentTime = (recentTransaction.timeStamp) * 1000
                 recentTime = new Date(recentTime)
                 recentTime = recentTime.toDateString()

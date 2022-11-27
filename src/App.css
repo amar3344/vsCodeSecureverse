@@ -300,8 +300,8 @@ td {
   border: 1px solid black;
   padding: 5px 1px;
   border-collapse: collapse;
-  border-color: #ffffff;
-  color: #ffffff;
+  border-color: #262652;
+  color: #000;
   font-size: 13px;
 
 }
@@ -350,5 +350,10 @@ tbody {
   padding: 10px;
   border-radius: 10px;
 
+
+}
+
+.time-text{
+  padding: 10px;
 
 }

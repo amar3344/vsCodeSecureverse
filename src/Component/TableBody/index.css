@@ -4,7 +4,7 @@
 }
 
 .transaction-type-outgoing{
-    background-color: red;
+    background-color: lightblue;
 }
 
 table,
@@ -35,4 +35,9 @@ td {
 
 tbody {
   width: 100%;
+}
+
+.time-text{
+  padding: 10px;
+  width: 80px;
 }
