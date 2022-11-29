@@ -8,7 +8,7 @@ const TableEth20 = (props) =>{
     const {detailsE20} = props
     //console.log(detailsE20)
     const {from,to,hash,value,timeStamp,tokenSymbol} = detailsE20
-    console.log(value)
+    //console.log(value)
     let amount = value/(10 ** 18)
     amount = Math.round(amount)
     let timedate = timeStamp * 1000

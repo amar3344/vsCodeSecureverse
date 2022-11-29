@@ -39,6 +39,7 @@ class App extends Component {
     state = {transactionResults :[],message : "",activeTabId:transactionTabs[0].displayText}
 
     componentDidUnMount(){
+        console.log("component")
         this.getdetailsFromUrl()
         this.getTransactionsFromEther20()
 
@@ -82,14 +83,12 @@ class App extends Component {
                 //intervalId = setInterval(this.getdetailsFromUrl, 5000);
 
             }
-            
-
 
         }
 
         getTransactionsFromEther20 = async() =>{
             let ercUrl = "https://api.etherscan.io/api?module=account&action=tokentx&address=" + input + "&page=1&offset=100&startblock=0&endblock=27025780&sort=desc&apikey=" + apiKey
-            console.log(ercUrl)
+            //console.log(ercUrl)
 
             await fetch(ercUrl,options)
             .then(function(response){
@@ -127,7 +126,7 @@ class App extends Component {
         }
 
         getTransactionsFromUrl = () =>{
-            intervalId = setInterval(this.getdetailsFromUrl, 3000);
+           // intervalId = setInterval(this.getdetailsFromUrl, 3000);
             clearInterval(etherInterval)
             clearInterval(a)
         }
@@ -179,7 +178,7 @@ class App extends Component {
 
         getTableEth20Transactions = () =>{
             const {transactionResults,activeTabId} = this.state
-            console.log(transactionResults)
+            //console.log(transactionResults)
 
             return(
                 <>
@@ -248,7 +247,7 @@ class App extends Component {
                             </div>
                             <h1 className="heading">Welcome to Securevers's Wallet tracking</h1>
                             <div className="button-container">
-                                <button type="button" className="login-button">Login</button>
+                                <button type="button" className="login-button connect-button">Login</button>
                                 <button type="button" className="connect-button">Connet Wallet</button>
                             </div>
                         </div>

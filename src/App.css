@@ -7,7 +7,8 @@
 
 .bg-container {
   width: 100% !important;
-  background-image: linear-gradient(to right, #000000, #262652);
+  background-color: 
+  #C8FACD;
   padding: 20px;
   display: flex;
   flex-direction: column;
@@ -17,7 +18,7 @@
 }
 
 .active-tabs{
-  color: #fff;
+  color: #000;
   margin: 10px;
 }
 
@@ -50,7 +51,10 @@
 }
 
 .connect-button {
-  background-color: #057ef7;
+  --color1: #007B55;
+  --color2: #5BE584;
+  --color3: #00AB55;
+  background: linear-gradient(87.45deg,var(--color1),var(--color2) 45.44%,var(--color3) 101.45%);
   width: 100%;
   height: 30px;
   border: none;
@@ -60,11 +64,13 @@
   font-family: "Roboto";
 }
 
+
 .Container {
   display: flex;
 }
 
 .drop-down-button {
+  
   width: 80px;
   height: 40px;
   border-left: none;
@@ -72,12 +78,11 @@
   border-color: #000000;
   border-top: none;
   border-bottom: none;
-  background-color: #393061;
-  color: #fff;
+  color: #000;
 }
 
 .drop-down-text {
-  font: 20px "Roboto"400;
+  font: 20px "Roboto"500;
   color: #000000;
   border: none;
 
@@ -85,9 +90,9 @@
 
 .from-text {
   font-size: 15px;
-  font-weight: 500;
+  font-weight: bold;
   font-family: "Roboto";
-  color: #fff;
+  color: #000;
   margin: 10px;
 }
 
@@ -101,7 +106,7 @@
   font-size: 30px;
   font-family: "Roboto";
   font-weight: 500;
-  color: #ffffff;
+  color: #000;
   width: 300px;
   align-self: center;
 }
@@ -126,13 +131,13 @@
 .logo-text {
   font-size: 20px;
   font-family: "Roboto";
-  font-weight: 400;
-  color: #b5a8a7;
+  font-weight: 500;
+  color: #000;
   text-align: center;
 }
 
 .login-button {
-  border: none;
+  border: 1px solid #000;
   background-color: #ffffff;
   font-size: 15px;
   font-family: "Roboto";
@@ -146,7 +151,7 @@
   font-size: 18px;
   font-weight: 500;
   font-family: "Roboto";
-  color: #fff;
+  color: #000;
   list-style-type: none;
 }
 
@@ -171,7 +176,7 @@
   border: 1px solid #000000;
   border-radius: 15px;
   height: 100%;
-  background-color:#262652;
+  background-color:#5BE584;
   align-self: center;
   padding: 30px;
   margin-bottom: 30px;
@@ -197,7 +202,7 @@
   height: 50px;
   border: none;
   border-radius: 10px;
-  background-color: #393061;
+  background-color: #fff;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -226,10 +231,7 @@
   padding: 10px;
   font-size: 15px;
   color: #000000;
-  border-radius: 10px;
   width: 100%;
-  background-color: #393061;
-  color: #fff;
 
 }
 
@@ -251,30 +253,39 @@
 }
 
 .search-address-button {
+  --color1: #007B55;
+  --color2: #5BE584;
+  --color3: #00AB55;
+  background: linear-gradient(87.45deg,var(--color1),var(--color2) 45.44%,var(--color3) 101.45%);
   width: 100px;
   height: 50px;
   border: 1px solid #393061;
   border-radius: 10px;
-  background-color: transparent;
   margin: 10px;
   font-size: 15px;
   align-self: center;
-  color: #fff;
+  color: #000;
   cursor: pointer;
+  font-weight: 500;
 }
 
 .stop-address-button{
+  --color1: #007B55;
+  --color2: #5BE584;
+  --color3: #00AB55;
+  background: linear-gradient(87.45deg,var(--color1),var(--color2) 45.44%,var(--color3) 101.45%);
 
   width: 100px;
   height: 50px;
   border: 1px solid #393061;
   border-radius: 10px;
-  background-color: red;
   margin: 10px;
   font-size: 15px;
   align-self: center;
-  color: #fff;
+  color: #000;
   cursor: pointer;
+  font-weight: 500;
+
 
 }
 
@@ -297,11 +308,11 @@
 table,
 th,
 td {
-  border: 1px solid black;
+  border: 1px solid black !important;
   padding: 5px 1px;
   border-collapse: collapse;
   border-color: #262652;
-  color: #000;
+  color: #000 !important;
   font-size: 13px;
 
 }
@@ -339,12 +350,16 @@ tbody {
 }
 
 .tab-buttons{
-  background-color: lightblue;
+  --color1: #007B55;
+  --color2: #5BE584;
+  --color3: #00AB55;
+  background: linear-gradient(87.45deg,var(--color1),var(--color2) 45.44%,var(--color3) 101.45%);
+
   color: #000;
   font-size: 30px;
-  font-family: "Roboto" ;
+  font-family: "Bree serif" ;
   font-size: 500;
-  border: none;
+  border: 1px solid #000;
   cursor: pointer;
   margin: 20px;
   padding: 10px;
