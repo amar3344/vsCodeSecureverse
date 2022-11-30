@@ -2,8 +2,11 @@ import "./index.css"
 
 const ActiveTabs = (props) =>{
     //console.log(props)
-    const {tabDetails,updateActiveTab} = props
+    const {tabDetails,updateActiveTab,isActive,isLoading} = props
+    //console.log(isActive)
     const {id,displayText} = tabDetails
+    const displayTextbackground = isActive && "tab-active"
+    //const loadingSpinner = !isLoading && "disabled"
 
     const getActiveTab = () => {
 
@@ -12,7 +15,7 @@ const ActiveTabs = (props) =>{
 
     return(
         <li className="list-tabs">
-            <button type="button" className="tab-buttons" onClick={getActiveTab}>{displayText}</button>
+            <button type="button"  className={`tab-buttons ${displayTextbackground}`} onClick={getActiveTab}>{displayText}</button>
         </li>
     )
     

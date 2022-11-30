@@ -1,6 +1,9 @@
 import {Component} from "react"
+import Loader from "react-loader-spinner"
+import "react-loader-spinner/dist/loader/css/react-spinner-loader.css"
 
 import './App.css';
+
 import TableEth20 from "./Component/TableEth20/index"
 import TableBody from "./Component/TableBody/index";
 import ActiveTabs from "./Component/ActiveTabs/index"
@@ -36,7 +39,7 @@ let transactionTabs = [
 ]
 
 class App extends Component {
-    state = {transactionResults :[],message : "",activeTabId:transactionTabs[0].displayText}
+    state = {transactionResults :[],message : "",activeTabId:transactionTabs[0],isLoading:true}
 
     componentDidUnMount(){
         console.log("component")
@@ -54,7 +57,6 @@ class App extends Component {
     }
 
         getdetailsFromUrl = async() =>{
-
             if(input === ""){
                 alert("Please Enter Valid Address")
             }
@@ -87,6 +89,7 @@ class App extends Component {
         }
 
         getTransactionsFromEther20 = async() =>{
+            <Loader/>
             let ercUrl = "https://api.etherscan.io/api?module=account&action=tokentx&address=" + input + "&page=1&offset=100&startblock=0&endblock=27025780&sort=desc&apikey=" + apiKey
             //console.log(ercUrl)
 
@@ -142,16 +145,20 @@ class App extends Component {
 
         updateActiveTab = (id) =>{
             const {activeTabId} = this.state
-            activeTabId !== "Internal Transactions" ? this.getTransactionsFromUrl() : this.getTransactionsFromEther20Url()
-            this.setState({activeTabId : transactionTabs[id].displayText,transactionResults : newResults})
+            const activeTabDisplay = activeTabId.displayText
+
+            activeTabDisplay !== "Internal Transactions" ? this.getTransactionsFromUrl() : this.getTransactionsFromEther20Url()
+            this.setState({activeTabId : transactionTabs[id],transactionResults : newResults})
             //console.log(activeTabId)    
         }
 
         getTableInternalTransactions =() =>{
             const {transactionResults,activeTabId} = this.state
+            const activeTabDisplay = activeTabId.displayText
+            
             return(
                 <>
-                <h1 className="active-tabs" style={{"text-align":"center"}}>{activeTabId}</h1>        
+                <h1 className="active-tabs" style={{"text-align":"center"}}>{activeTabDisplay}</h1>        
                         <table>
                             <thead>
                                 <tr>
@@ -178,11 +185,12 @@ class App extends Component {
 
         getTableEth20Transactions = () =>{
             const {transactionResults,activeTabId} = this.state
+            const activeTabDisplay = activeTabId.displayText
             //console.log(transactionResults)
 
             return(
                 <>
-                <h1 className="active-tabs" style={{"text-align":"center"}}>{activeTabId}</h1>        
+                <h1 className="active-tabs" style={{"text-align":"center"}}>{activeTabDisplay}</h1>        
                         <table>
                             <thead>
                                 <tr>
@@ -192,9 +200,7 @@ class App extends Component {
                                     <th>Hash Number</th>
                                     <th>Transaction Amount</th>
                                     <th>tokenSymbol</th>
-                                    <th>Type of Transaction</th>
-                                    
-                                    
+                                    <th>Type of Transaction</th> 
                                 </tr>
                             </thead>
                             <tbody> {
@@ -213,12 +219,13 @@ class App extends Component {
 
         setIntervaldetailasUrl = () =>{
             a = setInterval(this.getdetailsFromUrl,3000)
+            this.setState({isLoading:false})
         }
 
 
         render(){
-            const {transactionResults,activeTabId}  = this.state;
-            //console.log(activeTabId)
+            const {transactionResults,activeTabId,isLoading}  = this.state;
+            console.log(activeTabId)
             
             //console.log(transactionResults)
             //transactionResults.map(eachTransaction => console.log(eachTransaction))
@@ -280,11 +287,11 @@ class App extends Component {
                         </ul>
                         <ul className="button-tabs-container">
                             {transactionTabs.map(eachTab =>(
-                                <ActiveTabs key={eachTab.id} tabDetails={eachTab} updateActiveTab = {this.updateActiveTab}/>
+                                <ActiveTabs key={eachTab.id} tabDetails={eachTab} updateActiveTab = {this.updateActiveTab} isActive={eachTab.id === activeTabId.id} isLoading={isLoading}/>
                             ))}
                         </ul>
                         
-                        {activeTabId === "Internal Transactions" ? this.getTableInternalTransactions() : this.getTableEth20Transactions()}    
+                        {activeTabId.displayText === "Internal Transactions" ? this.getTableInternalTransactions() : this.getTableEth20Transactions()}    
                         
                     </div>
                 </div> 
