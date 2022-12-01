@@ -3,16 +3,15 @@
 }
 
 .tab-active{
-    --color1: #007B55;
-    --color2: #5BE584;
-    --color3: #00AB55;
-    background: linear-gradient(87.45deg,var(--color1),var(--color2) 45.44%,var(--color3) 101.45%);
+    --color1: #84A9FF;
+  --color2: #3366FF;
+  --color3: #1939B7;
+  background: linear-gradient(87.45deg,var(--color1),var(--color2) 45.44%,var(--color3) 101.45%);
 
 }
 
 .tab-buttons{
     background-color: transparent;
-  
     color: #000;
     font-size: 30px;
     font-family: "Bree serif" ;

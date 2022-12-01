@@ -8,10 +8,11 @@
 .bg-container {
   width: 100% !important;
   background-color: 
-  #C8FACD;
+  #D6E4FF;
   padding: 20px;
   display: flex;
   flex-direction: column;
+  margin-top: 30px;
   height: 100%;
 
 
@@ -48,12 +49,13 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  margin-top: 250px;
 }
 
 .connect-button {
-  --color1: #007B55;
-  --color2: #5BE584;
-  --color3: #00AB55;
+  --color1: #84A9FF;
+  --color2: #3366FF;
+  --color3: #1939B7;
   background: linear-gradient(87.45deg,var(--color1),var(--color2) 45.44%,var(--color3) 101.45%);
   width: 100%;
   height: 30px;
@@ -62,6 +64,8 @@
   cursor: pointer;
   font-size: 15px;
   font-family: "Roboto";
+  color: #fff;
+  margin-left: 20px;
 }
 
 
@@ -70,7 +74,7 @@
 }
 
 .drop-down-button {
-  
+  border-radius: 10px;
   width: 80px;
   height: 40px;
   border-left: none;
@@ -85,6 +89,13 @@
   font: 20px "Roboto"500;
   color: #000000;
   border: none;
+
+}
+
+.etherscan-logo{
+  background-size:cover;
+  height: 100%;
+  width: 120px;
 
 }
 
@@ -105,8 +116,8 @@
 .heading {
   font-size: 30px;
   font-family: "Roboto";
-  font-weight: 500;
-  color: #000;
+  font-weight: bold;
+  color: #091A7A;
   width: 300px;
   align-self: center;
 }
@@ -131,11 +142,12 @@
 .logo-text {
   font-size: 20px;
   font-family: "Roboto";
-  font-weight: 500;
-  color: #000;
+  font-weight: bold;
+  color: #091A7A;
   text-align: center;
 }
 
+/*
 .login-button {
   border: 1px solid #000;
   background-color: #ffffff;
@@ -146,6 +158,7 @@
   width: 100px;
   margin: 10px;
 }
+*/
 
 .listEle {
   font-size: 18px;
@@ -157,7 +170,7 @@
 
 .main-container {
   width: 100% !important;
-  height: 100%;
+  height: 100% !important;
   display: flex;
   /*justify-content: center;*/
 
@@ -170,13 +183,43 @@
   }
 }
 
+.nav-image{
+  width: 50%;
+  padding-left: 20px;
+}
+
+.navbar-container{
+  width: 100Vw;
+  position: fixed;
+  background-color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  padding-right: 30px;
+  
+
+}
+
+.nav-buttons{
+  padding: 5px;
+  color: #fff;
+}
+
+.nab-buttons-container{
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 50%;
+}
+
 
 .result-container {
   width: 80%;
   border: 1px solid #000000;
   border-radius: 15px;
-  height: 100%;
-  background-color:#5BE584;
+  height: 300px;
+  background-color:#84A9FF;
   align-self: center;
   padding: 30px;
   margin-bottom: 30px;
@@ -189,13 +232,24 @@
   font-size: 15px;
   font-weight: 500;
   font-family: "Roboto";
-  color: orange;
+  color: #1939B7;
 
 }
 
 .rowEle {
   width: 100%;
 }
+
+.search-button{
+  background-color: #057ef7;
+  width: 50px;
+  height: 100%;
+  border: none;
+  color: #fff;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
 
 .search-container {
   width: 90%;
@@ -208,6 +262,15 @@
   justify-content: center;
   align-self: center;
   margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+.search-result-container{
+  background-color: #091A7A;
+  height: 200px;
+  border-radius: 25px;
+  display: flex;
+  flex-direction: column;
 }
 
 .search-element {
@@ -232,6 +295,7 @@
   font-size: 15px;
   color: #000000;
   width: 100%;
+  border: none;
 
 }
 
@@ -253,9 +317,9 @@
 }
 
 .search-address-button {
-  --color1: #007B55;
-  --color2: #5BE584;
-  --color3: #00AB55;
+  --color1: #84A9FF;
+  --color2: #3366FF;
+  --color3: #1939B7;
   background: linear-gradient(87.45deg,var(--color1),var(--color2) 45.44%,var(--color3) 101.45%);
   width: 100px;
   height: 50px;
@@ -264,17 +328,17 @@
   margin: 10px;
   font-size: 15px;
   align-self: center;
-  color: #000;
+  color: #fff;
   cursor: pointer;
   font-weight: 500;
 }
 
+/*
 .stop-address-button{
-  --color1: #007B55;
-  --color2: #5BE584;
-  --color3: #00AB55;
+  --color1: #84A9FF;
+  --color2: #3366FF;
+  --color3: #1939B7;
   background: linear-gradient(87.45deg,var(--color1),var(--color2) 45.44%,var(--color3) 101.45%);
-
   width: 100px;
   height: 50px;
   border: 1px solid #393061;
@@ -282,12 +346,13 @@
   margin: 10px;
   font-size: 15px;
   align-self: center;
-  color: #000;
+  color: #fff;
   cursor: pointer;
   font-weight: 500;
 
 
 }
+*/
 
 .to-text {
   font-size: 15px;

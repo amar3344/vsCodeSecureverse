@@ -39,23 +39,10 @@ let transactionTabs = [
 ]
 
 class App extends Component {
-    state = {transactionResults :[],message : "",activeTabId:transactionTabs[0],isLoading:true}
+    state = {transactionResults :[],message : "",activeTabId:transactionTabs[0],isLoading:false}
 
-    componentDidUnMount(){
-        console.log("component")
-        this.getdetailsFromUrl()
-        this.getTransactionsFromEther20()
 
-    }
-
-    stopTransactionsFromUrl = () =>{
-        //console.log("a")
-        clearInterval(intervalId)
-        clearInterval(etherInterval)
-        clearInterval(a)
-
-    }
-
+    
         getdetailsFromUrl = async() =>{
             if(input === ""){
                 alert("Please Enter Valid Address")
@@ -81,7 +68,7 @@ class App extends Component {
                         }
     
                     });
-                this.setState({transactionResults : newResults})
+                this.setState({transactionResults : newResults,isLoading : false})
                 //intervalId = setInterval(this.getdetailsFromUrl, 5000);
 
             }
@@ -89,7 +76,6 @@ class App extends Component {
         }
 
         getTransactionsFromEther20 = async() =>{
-            <Loader/>
             let ercUrl = "https://api.etherscan.io/api?module=account&action=tokentx&address=" + input + "&page=1&offset=100&startblock=0&endblock=27025780&sort=desc&apikey=" + apiKey
             //console.log(ercUrl)
 
@@ -153,7 +139,7 @@ class App extends Component {
         }
 
         getTableInternalTransactions =() =>{
-            const {transactionResults,activeTabId} = this.state
+            const {transactionResults,activeTabId,isLoading} = this.state
             const activeTabDisplay = activeTabId.displayText
             
             return(
@@ -170,12 +156,13 @@ class App extends Component {
                                     <th>Type of Transaction</th>
                                 </tr>
                             </thead>
-                            <tbody> {
+                            <tbody> {isLoading ? (<Loader type="TailSpin" color="#00BFFF" height={50} width={50} />) : (
                                 transactionResults.map((eachTransaction,index) =>{
                                     return(
                                         <TableBody key={index} details = {eachTransaction} input={input}/>
                                 )
-                                })
+                                }))
+                                
                                 }
                             </tbody>  
                         </table>
@@ -184,7 +171,7 @@ class App extends Component {
         }
 
         getTableEth20Transactions = () =>{
-            const {transactionResults,activeTabId} = this.state
+            const {transactionResults,activeTabId,isLoading} = this.state
             const activeTabDisplay = activeTabId.displayText
             //console.log(transactionResults)
 
@@ -203,12 +190,13 @@ class App extends Component {
                                     <th>Type of Transaction</th> 
                                 </tr>
                             </thead>
-                            <tbody> {
+                            <tbody> { isLoading ? (<Loader type="TailSpin" color="#00BFFF" height={50} width={50} />) : (
                                 transactionResults.map((eachTransaction,index) =>{
                                     return(
                                         <TableEth20 key={index} detailsE20 = {eachTransaction} input={input}/>
                                 )
-                                })
+                                }))
+                                
                                 }
                             </tbody>  
                         </table>
@@ -219,13 +207,13 @@ class App extends Component {
 
         setIntervaldetailasUrl = () =>{
             a = setInterval(this.getdetailsFromUrl,3000)
-            this.setState({isLoading:false})
+            this.setState({isLoading:true})
         }
 
 
         render(){
             const {transactionResults,activeTabId,isLoading}  = this.state;
-            console.log(activeTabId)
+            //console.log(activeTabId)
             
             //console.log(transactionResults)
             //transactionResults.map(eachTransaction => console.log(eachTransaction))
@@ -246,6 +234,21 @@ class App extends Component {
 
             return (   
                 <div className="main-container">
+                    <nav className="navbar-container">
+                        <div className="nav-image">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTqpauj3Q-gzNc03LYHGygTo3lzXTSRRheaeU3S0Zu6Ds8leV06pRnHao4H6ntylr7Lods&usqp=CAU"
+                         alt="logo" className="etherscan-logo"/>
+                        </div>
+                        <div className="nab-buttons-container">
+                            <button type="button" className="connect-button">Home</button>
+                            <button type="button" className="connect-button">Contact Us</button>
+                            <button type="button" className="connect-button">About</button>
+                            <button type="button" className="connect-button">Login</button>
+                            <button type="button" className="connect-button">Connet Wallet</button>
+
+                        </div>
+                            
+                        </nav>
                     <div className="bg-container">
                         <div className="header-container">
                             <div>
@@ -253,38 +256,37 @@ class App extends Component {
                                 <p className="logo-text">Etherum</p>
                             </div>
                             <h1 className="heading">Welcome to Securevers's Wallet tracking</h1>
-                            <div className="button-container">
-                                <button type="button" className="login-button connect-button">Login</button>
-                                <button type="button" className="connect-button">Connet Wallet</button>
+                        </div>
+                        <div className="search-result-container">
+                            <div className="search-container">
+                                <select className="drop-down-button">
+                                    <option value="" className="drop-down-text">All Filters</option>
+                                    <option className="drop-down-text" value="BSC">BSC</option>
+                                    <option className="drop-down-text" value="ETC">ETH</option>
+                                    <option className="drop-down-text" value="TRN">TRN</option>
+                                </select>
+                                <div className="search-element">
+                                    <input type="search" className="search-input" placeholder="add address here" onChange={this.gettingInputValue}/>
+                                </div>
+                                <button type="button" className="search-button" onClick={this.setIntervaldetailasUrl}>
+                                <i class="fa-solid fa-magnifying-glass"></i>
+                                </button>
+                                
                             </div>
-                        </div>
-                        <div className="search-container">
-                            <select className="drop-down-button">
-                                <option value="" className="drop-down-text">All Filters</option>
-                                <option className="drop-down-text" value="BSC">BSC</option>
-                                <option className="drop-down-text" value="ETC">ETH</option>
-                                <option className="drop-down-text" value="TRN">TRN</option>
-                            </select>
-                            <div className="search-element">
-                                <input type="search" className="search-input" placeholder="add address here" onChange={this.gettingInputValue}/>
-                            </div>
-                        </div>
-                        <div className="button-container-stop-start">
-                            <button type="button" className="search-address-button" id="GetDetails" onClick={this.setIntervaldetailasUrl}>Scan Now</button>
-                            <button type="button" className="stop-address-button" id="stopDetails" onClick={this.stopTransactionsFromUrl}>Stop Scan</button>
-                        </div>
+            
 
-                        <ul className="result-container" id="resultContainer">
-                            <li className="listEle">Transaction Details :
-                                <p className="from-text">FROM : <span id="fromText" className="result-text">{recentTransaction.from}</span></p>
-                                <p className="from-text">To : <span id="toText" className="result-text">{recentTransaction.to}</span></p>
-                                <p className="from-text">Amount : <span id="amountText" className="result-text">{amount}</span></p>
-                                <p className="from-text">Time : <span id="timeText" className="result-text">{recentTime}</span></p>
-                                <p className="from-text">Hash Number : <span id="hashNumberText" className="result-text">{recentTransaction.hash}</span></p>
-                                <p className="from-text">Block Number : <span id="BlockNumberText" className="result-text">{recentTransaction.blockNumber}</span></p>
-                                <p className="from-text">Type of Transaction : <span id="typeoftransactionText" className = {`result-text ${classNameTypeofTransaction}`}>{typeofTransaction}</span></p>
-                            </li>
-                        </ul>
+                            <ul className="result-container" id="resultContainer">
+                                <li className="listEle">Transaction Details :
+                                    <p className="from-text">FROM : <span id="fromText" className="result-text">{recentTransaction.from}</span></p>
+                                    <p className="from-text">To : <span id="toText" className="result-text">{recentTransaction.to}</span></p>
+                                    <p className="from-text">Amount : <span id="amountText" className="result-text">{amount}</span></p>
+                                    <p className="from-text">Time : <span id="timeText" className="result-text">{recentTime}</span></p>
+                                    <p className="from-text">Hash Number : <span id="hashNumberText" className="result-text">{recentTransaction.hash}</span></p>
+                                    <p className="from-text">Block Number : <span id="BlockNumberText" className="result-text">{recentTransaction.blockNumber}</span></p>
+                                    <p className="from-text">Type of Transaction : <span id="typeoftransactionText" className = {`result-text ${classNameTypeofTransaction}`}>{typeofTransaction}</span></p>
+                                </li>
+                            </ul>
+                        </div>
                         <ul className="button-tabs-container">
                             {transactionTabs.map(eachTab =>(
                                 <ActiveTabs key={eachTab.id} tabDetails={eachTab} updateActiveTab = {this.updateActiveTab} isActive={eachTab.id === activeTabId.id} isLoading={isLoading}/>
