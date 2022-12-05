@@ -1,3 +1,4 @@
+import {formatDistanceToNow} from 'date-fns'
 import './index.css'
 
 
@@ -13,8 +14,9 @@ const TableEth20 = (props) =>{
     
     let amount = value
     let timedate = timeStamp * 1000
-    timedate = new Date(timedate)
-    timedate = timedate.toDateString()
+    timedate = formatDistanceToNow(timedate)
+    //timedate = new Date(timedate)
+    //timedate = timedate.toDateString()
 
     const transactionType = from.toString().toLowerCase() === inputTransaction.toString().toLowerCase() ? "OUT" : "IN"
     const classNameTypeofTransaction = transactionType === "IN" ? "transaction-type-incoming" : "transaction-type-outgoing"
@@ -24,7 +26,7 @@ const TableEth20 = (props) =>{
     return(
         <tr>
             <td><span className="from-text-table">{hash}</span></td>
-            <td className="time-text">{timedate}</td>
+            <td className="time-text">{timedate} ago</td>
             <td><span className="from-text-table">{from}</span></td>
             <td className={classNameTypeofTransaction}>{transactionType}</td>
             <td><span className="from-text-table">{to}</span></td>
