@@ -7,26 +7,28 @@ const TableBody = (props) =>{
     
     const {details} = props
     //console.log(details)
-    const {from,to,hash,value,timeStamp,} = details
+    const {from,to,hash,value,timeStamp,blockNumber} = details
     let amount = value/(10 ** 18)
     amount = Math.round(amount)
     let timedate = timeStamp * 1000
     timedate = new Date(timedate)
     timedate = timedate.toDateString()
 
-    const transactionType = from.toString().toLowerCase() === inputTransaction.toString().toLowerCase() ? "OUTGOING" : "INCOMING"
-    const classNameTypeofTransaction = transactionType === "INCOMING" ? "transaction-type-incoming" : "transaction-type-outgoing"
+    const transactionType = from.toString().toLowerCase() === inputTransaction.toString().toLowerCase() ? "OUT" : "IN"
+    const classNameTypeofTransaction = transactionType === "IN" ? "transaction-type-incoming" : "transaction-type-outgoing"
     //console.log(transactionType)
     //console.log(from)
 
     return(
         <tr>
-        <td>{from}</td>
-        <td>{to}</td>
-        <td className="time-text">{timedate}</td>
-        <td>{hash}</td>
-        <td>{amount}</td>
-        <td className={classNameTypeofTransaction}>{transactionType}</td>
+            <td><span className="from-text-table">{hash}</span></td>
+            <td><span className="blocknumber-text"></span>{blockNumber}</td>
+            <td className="time-text">{timedate}</td>
+            <td><span className="from-text-table">{from}</span></td>
+            <td><sapn className={`${classNameTypeofTransaction}`}>{transactionType}</sapn></td>
+            <td><span className="from-text-table">{to}</span></td>
+            <td>{amount}</td>
+        
         </tr>
         
 

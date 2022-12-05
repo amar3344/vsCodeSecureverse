@@ -2,7 +2,7 @@ import "./index.css"
 
 const ActiveTabs = (props) =>{
     //console.log(props)
-    const {tabDetails,updateActiveTab,isActive,isLoading} = props
+    const {tabDetails,updateActiveTab,isActive} = props
     //console.log(isActive)
     const {id,displayText} = tabDetails
     const displayTextbackground = isActive && "tab-active"

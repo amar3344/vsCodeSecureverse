@@ -1,20 +1,24 @@
+.from-text-table{
+  color: #3366FF;
+  
+}
+
+
 .transaction-type-incoming{
-    background-color: #84A9FF;
+    background-color: #D6E4FF;
+    color: #3366FF;
 
 }
 
 .transaction-type-outgoing{
-    background-color: lightblue;
-    color: #000;
+    background-color: #FFE9D5;
+    color: #FF5630;
 }
 
 table,
 th,
 td {
-  border: 1px solid black;
   padding: 5px 1px;
-  border-collapse: collapse;
-  border-color: #000;
   color: #000;
   font-size: 13px;
 

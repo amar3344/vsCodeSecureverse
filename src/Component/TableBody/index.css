@@ -1,19 +1,31 @@
+.blocknumber-text{
+  color: #FF5630;
+}
+
+.from-text-table{
+  color: #3366FF;
+}
+
+
 .transaction-type-incoming{
-    background-color: #84A9FF;
+    background-color: #D8FBDE;
+    color: #36B37E;
 
 }
 
+.type-transaction-text{
+  color: #FF5630;
+}
+
 .transaction-type-outgoing{
-    background-color: lightblue;
+    background-color: #FFE9D5;
+    color: #FF5630;
 }
 
 table,
 th,
 td {
-  border: 1px solid black;
   padding: 5px 1px;
-  border-collapse: collapse;
-  border-color: #ffffff;
   color: #ffffff;
   font-size: 13px;
 

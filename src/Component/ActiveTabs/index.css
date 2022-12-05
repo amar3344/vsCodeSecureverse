@@ -3,10 +3,9 @@
 }
 
 .tab-active{
-    --color1: #84A9FF;
   --color2: #3366FF;
   --color3: #1939B7;
-  background: linear-gradient(87.45deg,var(--color1),var(--color2) 45.44%,var(--color3) 101.45%);
+  background: linear-gradient(87.45deg,var(--color2) 45.44%,var(--color3) 101.45%);
 
 }
 
@@ -14,7 +13,7 @@
     background-color: transparent;
     color: #000;
     font-size: 30px;
-    font-family: "Bree serif" ;
+    font-family: Helvetica,Arial,sans-serif;
     font-size: 500;
     border: 1px solid #000;
     cursor: pointer;

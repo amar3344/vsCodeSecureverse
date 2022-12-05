@@ -89,7 +89,7 @@ class App extends Component {
                     let {message,result} = resultsDataEther
                     
                     if (message === "OK") {
-                        newResults = await result
+                       newResults = await result
                         //console.log(newResults)
                         return newResults
     
@@ -148,12 +148,14 @@ class App extends Component {
                         <table>
                             <thead>
                                 <tr>
-                                    <th>From Wallet Address</th>
-                                    <th>To Wallet Address</th>
-                                    <th className="time-text">Time</th>
                                     <th>Hash Number</th>
-                                    <th>Transaction Amount</th>
+                                    <th>Block</th>
+                                    <th className="time-text">Time</th>
+                                    <th>From Wallet Address</th>
                                     <th>Type of Transaction</th>
+                                    <th>To Wallet Address</th>   
+                                    <th>Transaction Amount</th>
+                                    
                                 </tr>
                             </thead>
                             <tbody> {isLoading ? (<Loader type="TailSpin" color="#00BFFF" height={50} width={50} />) : (
@@ -181,13 +183,13 @@ class App extends Component {
                         <table>
                             <thead>
                                 <tr>
-                                    <th>From Wallet Address</th>
-                                    <th>To Wallet Address</th>
-                                    <th>Time</th>
                                     <th>Hash Number</th>
+                                    <th>Time</th>
+                                    <th>From Wallet Address</th>
+                                    <th>Type of Transaction</th> 
+                                    <th>To Wallet Address</th>
                                     <th>Transaction Amount</th>
                                     <th>tokenSymbol</th>
-                                    <th>Type of Transaction</th> 
                                 </tr>
                             </thead>
                             <tbody> { isLoading ? (<Loader type="TailSpin" color="#00BFFF" height={50} width={50} />) : (
@@ -239,13 +241,35 @@ class App extends Component {
                         <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTqpauj3Q-gzNc03LYHGygTo3lzXTSRRheaeU3S0Zu6Ds8leV06pRnHao4H6ntylr7Lods&usqp=CAU"
                          alt="logo" className="etherscan-logo"/>
                         </div>
-                        <div className="nab-buttons-container">
-                            <button type="button" className="connect-button">Home</button>
-                            <button type="button" className="connect-button">Contact Us</button>
-                            <button type="button" className="connect-button">About</button>
-                            <button type="button" className="connect-button">Login</button>
-                            <button type="button" className="connect-button">Connet Wallet</button>
-
+                        <div className="nav-buttons-container">
+                            <select className="nav-drop-down-button">
+                                <option className="navbar-links">Home</option>
+                            </select>
+                            <select className="nav-drop-down-button">
+                                <option className="navbar-links">Blockchain</option>
+                                <option className="navbar-links">ViewTransactions</option>
+                                <option className="navbar-links">View pending Transactions</option>
+                                <option className="navbar-links">View Contract internal Transactions</option>
+                            </select>
+                            <select className="nav-drop-down-button">
+                                <option className="navbar-links">Tokens</option>
+                                <option className="navbar-links">ERC20 Top Tokens</option>
+                                <option className="navbar-links">View ERC20 Transactions</option>
+                            </select>
+                            <select className="nav-drop-down-button">
+                                <option className="navbar-links">Resources</option>
+                                <option className="navbar-links">Charts & Status</option>
+                                <option className="navbar-links">Top Statistics</option>
+                            </select>
+                            <select className="nav-drop-down-button">
+                                <option className="navbar-links">More</option>
+                                <option className="navbar-links">Developers</option>
+                                <option className="navbar-links">Defi</option>
+                                <option className="navbar-links">Explore</option>
+                                <option className="navbar-links">Tools</option>
+                            </select>
+                            <button type = "button" className="login-button">Login</button>
+                            <button type = "button" className="login-button">Connect Wallet</button>
                         </div>
                             
                         </nav>
