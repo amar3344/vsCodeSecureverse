@@ -189,6 +189,7 @@ class App extends Component {
                                     <th>Type of Transaction</th> 
                                     <th>To Wallet Address</th>
                                     <th>Transaction Amount</th>
+                                    <th>BlockNumber</th>
                                     <th>tokenSymbol</th>
                                 </tr>
                             </thead>
@@ -282,6 +283,7 @@ class App extends Component {
                             <h1 className="heading">Welcome to Securevers's Wallet tracking</h1>
                         </div>
                         <div className="search-result-container">
+                            <h1 className="text">The Ethereum Blockchain Explorer</h1>
                             <div className="search-container">
                                 <select className="drop-down-button">
                                     <option value="" className="drop-down-text">All Filters</option>
@@ -297,6 +299,7 @@ class App extends Component {
                                 </button>
                                 
                             </div>
+                            <p className="tag-line">Sponsored:   <span className="span-elements">Binance - <a target="blank" href="https://accounts.binance.com/en/register?ref=XG03LB9A&utm_source=etherscan&utm_medium=header-text&utm_campaign=paid_central_etherscan-complimentary-placement" className="anchore-liks">Buy Bitcoin with zero fees!</a></span> We've just removed all our trading fees when you buy Bitcoin.</p>
             
 
                             <ul className="result-container" id="resultContainer">

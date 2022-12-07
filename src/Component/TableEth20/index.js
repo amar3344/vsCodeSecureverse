@@ -9,10 +9,11 @@ const TableEth20 = (props) =>{
     //console.log(inputTransaction)
     //console.log(detailsE20)
     
-    const {from,to,hash,value,timeStamp,tokenSymbol} = detailsE20
+    const {from,to,hash,value,timeStamp,tokenSymbol,blockNumber,tokenDecimal} = detailsE20
     //console.log(value)
+    //console.log(tokenDecimal)
     
-    let amount = value
+    let amount = value / (10 ** tokenDecimal)
     let timedate = timeStamp * 1000
     timedate = formatDistanceToNow(timedate)
     //timedate = new Date(timedate)
@@ -26,11 +27,12 @@ const TableEth20 = (props) =>{
     return(
         <tr>
             <td><span className="from-text-table">{hash}</span></td>
-            <td className="time-text">{timedate} ago</td>
+            <td className={`time-text ${classNameTypeofTransaction}`}>{timedate} ago</td>
             <td><span className="from-text-table">{from}</span></td>
             <td className={classNameTypeofTransaction}>{transactionType}</td>
             <td><span className="from-text-table">{to}</span></td>
-            <td>{amount}</td>
+            <td className={classNameTypeofTransaction}>{amount}</td>
+            <td className={classNameTypeofTransaction}>{blockNumber}</td>
             <td><span className="from-text-table">{tokenSymbol}</span></td>
         </tr>
         

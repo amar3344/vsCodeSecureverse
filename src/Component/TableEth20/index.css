@@ -35,6 +35,12 @@ tr {
 
 }
 
+tr {
+  border-bottom: 1px solid #000;
+}
+
+tr:hover {background-color: #D6EEEE;}
+
 td {
   width: 100%;
 }

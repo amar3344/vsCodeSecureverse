@@ -36,6 +36,12 @@ table {
 }
 
 tr {
+  border-bottom: 1px solid #000;
+}
+
+tr:hover {background-color: #D6EEEE;}
+
+tr {
   text-align: center;
   width: 100%;
 
