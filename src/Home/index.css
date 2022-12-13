@@ -1,0 +1,35 @@
+.home-text{
+    align-self: center;
+    color: #1939B7;
+}
+
+.home-container{
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+   margin-bottom: 200px;
+}
+
+.home-buttons-container{
+    display: flex;
+    justify-content: space-between;
+}
+
+.home-buttons{
+    background-color: #091A7A;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    cursor: pointer;
+    margin: 10px;
+}
+
+.secureverse-image{
+    height: 150px;
+    width: 150px;
+    margin: 20px;
+}

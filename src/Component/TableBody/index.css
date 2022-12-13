@@ -4,6 +4,10 @@
 
 .from-text-table{
   color: #3366FF;
+  overflow: hidden;
+    position: relative;
+    word-wrap: break-word;
+    max-width: 115px;
 }
 
 

@@ -1,0 +1,46 @@
+.list-router-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    list-style-type: none;
+  
+  }
+  
+  .link-bars{
+    margin: 10px;
+  }
+
+  .navbar-container{
+    width: 100Vw;
+    height: 5vh;
+    position: fixed;
+    background-color: #D6E4FF;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-right: 30px;
+    margin-top: 0px;
+    
+  
+  }
+  
+  .nav-image{
+    width: 35%;
+    padding-left: 20px;
+  }
+  
+  .router-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  
+  }
+
+  .blockchain-logo{
+    background-size: cover;
+    width: 150px;
+    height: 60px;
+    margin-top: 20px;
+  }
+
