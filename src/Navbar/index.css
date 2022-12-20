@@ -13,7 +13,7 @@
 
   .navbar-container{
     width: 100Vw;
-    height: 5vh;
+    height: 10vh;
     position: fixed;
     background-color: #D6E4FF;
     display: flex;
@@ -40,7 +40,7 @@
   .blockchain-logo{
     background-size: cover;
     width: 150px;
-    height: 60px;
+    height: 45px;
     margin-top: 20px;
   }
 
