@@ -146,14 +146,13 @@ class Bscscan extends Component {
                         <table>
                             <thead>
                                 <tr>
-                                    <th>Hash Number</th>
-                                    <th>Block</th>
-                                    <th className="time-text">Time</th>
                                     <th>From Wallet Address</th>
-                                    <th>Type of Transaction</th>
-                                    <th>To Wallet Address</th>   
+                                    <th>To Wallet Address</th>
                                     <th>Transaction Amount</th>
-                                    
+                                    <th className="time-text">Time</th>
+                                    <th>Hash Number</th>
+                                    <th>Type of Transaction</th>
+                                    <th>Block</th>                         
                                 </tr>
                             </thead>
                             <tbody> {isLoading ? (<Loader type="TailSpin" color="#00BFFF" height={50} width={50} />) : (
@@ -173,7 +172,7 @@ class Bscscan extends Component {
         getTableBsc20Transactions = () =>{
             const {transactionResults,activeTabId,isLoading} = this.state
             const activeTabDisplay = activeTabId.displayText
-            console.log(transactionResults)
+            //console.log(transactionResults)
 
             return(
                 <>
@@ -181,12 +180,12 @@ class Bscscan extends Component {
                         <table>
                             <thead>
                                 <tr>
-                                    <th>Hash Number</th>
-                                    <th>Time</th>
                                     <th>From Wallet Address</th>
-                                    <th>Type of Transaction</th> 
                                     <th>To Wallet Address</th>
                                     <th>Transaction Amount</th>
+                                    <th>Time</th>
+                                    <th>Hash Number</th>
+                                    <th>Type of Transaction</th>     
                                     <th>BlockNumber</th>
                                     <th>tokenSymbol</th>
                                 </tr>

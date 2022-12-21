@@ -4,7 +4,7 @@ import './index.css'
 
 const TableEth20 = (props) =>{
     const {input,detailsE20} = props
-    //console.log(props)
+    console.log(props)
     const inputTransaction = input
     //console.log(inputTransaction)
     //console.log(detailsE20)
@@ -26,12 +26,12 @@ const TableEth20 = (props) =>{
 
     return(
         <tr>
-            <td><span className="from-text-table">{hash}</span></td>
-            <td className={`time-text ${classNameTypeofTransaction}`}>{timedate} ago</td>
             <td><span className="from-text-table">{from}</span></td>
-            <td className={classNameTypeofTransaction}>{transactionType}</td>
             <td><span className="from-text-table">{to}</span></td>
             <td className={classNameTypeofTransaction}>{amount}</td>
+            <td className={`time-text ${classNameTypeofTransaction}`}>{timedate} ago</td>
+            <td><span className="from-text-table">{hash}</span></td>    
+            <td className={classNameTypeofTransaction}>{transactionType}</td>    
             <td className={classNameTypeofTransaction}>{blockNumber}</td>
             <td><span className="from-text-table">{tokenSymbol}</span></td>
         </tr>

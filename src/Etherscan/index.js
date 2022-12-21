@@ -148,14 +148,13 @@ class Etherscan extends Component {
                         <table>
                             <thead>
                                 <tr>
-                                    <th>Hash Number</th>
-                                    <th>Block</th>
-                                    <th className="time-text">Time</th>
                                     <th>From Wallet Address</th>
+                                    <th>To Wallet Address</th> 
+                                    <th>Transaction Amount</th>  
+                                    <th>Time</th>
+                                    <th>Hash Number</th>
                                     <th>Type of Transaction</th>
-                                    <th>To Wallet Address</th>   
-                                    <th>Transaction Amount</th>
-                                    
+                                    <th>Block</th>    
                                 </tr>
                             </thead>
                             <tbody> {isLoading ? (<Loader type="TailSpin" color="#00BFFF" height={50} width={50} />) : (
@@ -183,12 +182,12 @@ class Etherscan extends Component {
                         <table>
                             <thead>
                                 <tr>
-                                    <th>Hash Number</th>
-                                    <th>Time</th>
                                     <th>From Wallet Address</th>
-                                    <th>Type of Transaction</th> 
                                     <th>To Wallet Address</th>
                                     <th>Transaction Amount</th>
+                                    <th>Time</th>
+                                    <th>Hash Number</th>
+                                    <th>Type of Transaction</th> 
                                     <th>BlockNumber</th>
                                     <th>tokenSymbol</th>
                                 </tr>

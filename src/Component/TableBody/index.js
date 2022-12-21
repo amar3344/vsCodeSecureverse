@@ -23,13 +23,13 @@ const TableBody = (props) =>{
 
     return(
         <tr>
-            <td><span className="from-text-table">{hash}</span></td>
-            <td className={classNameTypeofTransaction}><span className="blocknumber-text" ></span>{blockNumber}</td>
-            <td className={`time-text ${classNameTypeofTransaction}`}>{timedate} ago</td>
             <td><span className="from-text-table">{from}</span></td>
-            <td><sapn className={`${classNameTypeofTransaction}`}>{transactionType}</sapn></td>
             <td><span className="from-text-table">{to}</span></td>
             <td className={classNameTypeofTransaction}>{amount}</td>
+            <td className={`time-text ${classNameTypeofTransaction}`}>{timedate} ago</td>
+            <td><span className="from-text-table">{hash}</span></td>
+            <td><sapn className={`${classNameTypeofTransaction}`}>{transactionType}</sapn></td>
+            <td className={classNameTypeofTransaction}><span className="blocknumber-text" ></span>{blockNumber}</td>
         
         </tr>
         
