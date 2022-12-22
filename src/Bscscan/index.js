@@ -74,7 +74,7 @@ class Bscscan extends Component {
         }
 
         getTransactionsFromEther20 = async() =>{
-            let bscUrl = "https://api.bscscan.com/api?module=account&action=tokentx&contractaddress=0xc9849e6fdb743d08faee3e34dd2d1bc69ea11a51&address=" + input + "&page=1&offset=5&startblock=0&endblock=999999999&sort=desc&apikey=" + apiKey
+            let bscUrl = "https://api.bscscan.com/api?module=account&action=tokentx&address=" + input + "&page=1&offset=5&startblock=0&endblock=999999999&sort=desc&apikey=" + apiKey
             console.log(bscUrl)
 
             await fetch(bscUrl,options)

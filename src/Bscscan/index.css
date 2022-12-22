@@ -4,6 +4,10 @@
     box-sizing: border-box;
     font-family: Helvetica,Arial,sans-serif ;
   }
+
+*, :after, :before {
+  box-sizing: border-box;
+}
   
   .anchore-liks{
     cursor: pointer;

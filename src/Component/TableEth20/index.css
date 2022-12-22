@@ -3,6 +3,29 @@
   
 }
 
+.from-Bsc {
+  max-width: 171px;
+  display: inline-block;
+  vertical-align: bottom;
+}
+
+.text-overflow {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+td, td:hover {
+  text-decoration: none;
+}
+
+td {
+  color: #3498db;
+  background-color: transparent;
+}
+
+
+
 
 .transaction-type-incoming{
     background-color: #D6E4FF;
@@ -27,6 +50,8 @@ td {
 
 table {
   width: 100%;
+  text-indent: initial;
+  border-spacing: 2px;
 }
 
 tr {
