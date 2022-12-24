@@ -24,6 +24,11 @@ const Navbar = ()=>{
                     Bscscan
                     </Link>
                 </li>         
+                <li className="link-bars">
+                    <Link to="/tronscan">
+                    Tronscan
+                    </Link>
+                </li>         
             </ul>
         </nav>
     )
