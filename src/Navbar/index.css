@@ -1,3 +1,11 @@
+.blockchain-logo{
+  background-size: cover;
+  width: 150px;
+  height: 45px;
+  margin-top: 20px;
+}
+
+
 .list-router-container{
     display: flex;
     flex-direction: row;
@@ -5,42 +13,58 @@
     align-items: center;
     list-style-type: none;
   
-  }
-  
-  .link-bars{
-    margin: 10px;
-  }
+}
 
-  .navbar-container{
-    width: 100Vw;
-    height: 10vh;
-    position: fixed;
-    background-color: #D6E4FF;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding-right: 30px;
-    margin-top: 0px;
-    
-  
-  }
-  
-  .nav-image{
-    width: 35%;
-    padding-left: 20px;
-  }
-  
-  .router-container{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  
-  }
+.login-btn{
+  background-color: rgb(12, 183, 240);
+  padding: 10px;
+  border-radius: 5px;
+  color: #fff;
+}
 
-  .blockchain-logo{
-    background-size: cover;
-    width: 150px;
-    height: 45px;
-    margin-top: 20px;
-  }
+.login-btn:hover{
+  background-color: blue;
+}
+  
+.link-bars{
+  margin: 10px;
+  padding: 10px;
+  border-radius: 3px;
+  color: #fff;
+  text-decoration: none;
+}
+
+.navbar-container{
+  width: 100Vw;
+  height: 10vh;
+  position: fixed;
+  background-color: #D6E4FF;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-right: 30px;
+  margin-top: 0px;
+  border-top: 2px solid orange; 
+  box-shadow: 0px 0px 5px 0px #00000088;
+
+}
+  
+.nav-image{
+  width: 35%;
+  padding-left: 20px;
+}
+
+.nav-buttons:hover{
+  background-color: lightblue;
+  color:#fff;
+
+}
+
+.router-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
 

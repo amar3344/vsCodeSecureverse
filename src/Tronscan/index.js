@@ -49,7 +49,7 @@ class Tronscan extends Component {
             }
             else{
                 let url = "https://apilist.tronscan.org/api/transaction?address=" + input + "&startblock=0&endblock=99999999&page=1&offset=10&sort=desc&apikey=" + apiKey;
-                console.log(url);
+                //console.log(url);
                 
                 await fetch(url, options)
                     .then(function(response) {
@@ -79,8 +79,8 @@ class Tronscan extends Component {
 
         }
 
-       /* getTransactionsFromEther20 = async() =>{
-            let ercUrl = "https://api.etherscan.io/api?module=account&action=tokentx&address=" + input + "&page=1&offset=100&startblock=0&endblock=27025780&sort=desc&apikey=" + apiKey
+       getTransactionsFromEther20 = async() =>{
+            let ercUrl = "https://apilist.tronscan.org/api/transaction?module=account&action=tokentx&address=" + input + "&page=1&offset=100&startblock=0&endblock=27025780&sort=desc&apikey=" + apiKey
             //console.log(ercUrl)
 
             await fetch(ercUrl,options)
@@ -104,7 +104,7 @@ class Tronscan extends Component {
             //intervalId = setInterval(this.getTransactionsFromEther20, 5000);
 
         }
-        */
+        
             
         getTransactionType=(from)=>{
             if(from.toString().toLowerCase() === input.toString().toLowerCase()){

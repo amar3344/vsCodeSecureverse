@@ -9,26 +9,31 @@ const Navbar = ()=>{
                     alt="blockchain-logo" className="blockchain-logo"/>
             </div>
             <ul className="list-router-container">
-                <li className="link-bars">
-                    <Link to="/">
+                <li className="link-bars nav-buttons">
+                    <Link to="/" style={{"text-decoration":"none"}}>
                         Home
                     </Link>
                 </li>
-                <li className="link-bars">
-                    <Link to="/etherscan">
+                <li className="link-bars nav-buttons">
+                    <Link to="/etherscan" style={{"text-decoration":"none"}}>
                     Etherscan
                     </Link>
                 </li>
-                <li className="link-bars">
-                    <Link to="/bscscan">
+                <li className="link-bars nav-buttons">
+                    <Link to="/bscscan" style={{"text-decoration":"none"}}>
                     Bscscan
                     </Link>
                 </li>         
-                <li className="link-bars">
-                    <Link to="/tronscan">
+                <li className="link-bars nav-buttons">
+                    <Link to="/tronscan" style={{"text-decoration":"none"}}>
                     Tronscan
                     </Link>
-                </li>         
+                </li>    
+                <li className="link-bars">
+                    <Link to="/Auth" style={{"text-decoration":"none"}} className="login-btn">
+                    Login
+                    </Link>
+                </li>              
             </ul>
         </nav>
     )

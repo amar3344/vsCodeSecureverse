@@ -5,6 +5,7 @@ import Etherscan from "./Etherscan"
 import Bscscan from "./Bscscan"
 import Navbar from "./Navbar"
 import Tronscan from "./Tronscan"
+import Auth from "./Auth"
 
 import "./App.css"
 
@@ -13,10 +14,11 @@ const App = ()=>{
         <Router>
             <Navbar/>
             <Routes>
-                <Route exact path = "/" element={<Home/>}/>
-                <Route exact path = "/etherscan" element={<Etherscan/>}/>
-                <Route exact path = "/bscscan" element={<Bscscan/>}/>
-                <Route exact path = "/tronscan" element={<Tronscan/>}/>
+                <Route  path = "/" element={<Home/>}/>
+                <Route  path = "/etherscan" element={<Etherscan/>}/>
+                <Route  path = "/bscscan" element={<Bscscan/>}/>
+                <Route  path = "/tronscan" element={<Tronscan/>}/>
+                <Route  path = "/Auth" element={<Auth/>}/>
             </Routes>
         </Router>
         

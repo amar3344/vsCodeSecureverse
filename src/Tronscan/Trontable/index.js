@@ -8,10 +8,10 @@ const TableBody = (props) =>{
     //console.log(inputTransaction)
    // console.log(details)
     const {ownerAddress,toAddress,hash,amount,timestamp,block} = details
-    console.log(ownerAddress,toAddress,hash,amount,timestamp,block)
+    //console.log(ownerAddress,toAddress,hash,amount,timestamp,block)
     //let amount = value/(10 ** 18)
     //amount = Math.round(amount)
-    let timedate = timestamp * 1000
+    let timedate = timestamp
     timedate = formatDistanceToNow(timedate)
     //timedate = new Date(timedate)
     //timedate = timedate.toDateString() 
