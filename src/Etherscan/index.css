@@ -434,6 +434,7 @@
   
   table {
     width: 100%;
+    margin: 10px 30px 30px 0px;
   }
   
   thead{
@@ -478,3 +479,5 @@
     padding: 10px;
   
   }
+
+  

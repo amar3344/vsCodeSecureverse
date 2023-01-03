@@ -28,14 +28,9 @@ apiKey = "IW9FKB2254UUN54IE52QKMQCIYNF61R4X5";
 let transactionTabs = [
     {
     id : 0,
-    displayText : "Internal Transactions"
+    displayText : "All Transactions"
 
-},
-{
-    id : 1,
-    displayText : "Eth20 Transactions"
 }
-
 ]
 
 class Etherscan extends Component {
@@ -50,10 +45,17 @@ class Etherscan extends Component {
             else{
                 let url = "https://api.etherscan.io/api?module=account&action=txlist&address=" + input + "&startblock=0&endblock=99999999&page=1&offset=10&sort=desc&apikey=" + apiKey;
                 //console.log(url);
+                let ercUrl = "https://api.etherscan.io/api?module=account&action=tokentx&address=" + input + "&page=1&offset=10&startblock=0&endblock=27025780&sort=desc&apikey=" + apiKey
+
             
                 await fetch(url, options)
                     .then(function(response) {
                         return response.json();
+                    })
+
+                await fetch(ercUrl,options)
+                    .then(function(response){
+                        return response.json()
                     })
     
     
@@ -67,39 +69,52 @@ class Etherscan extends Component {
         
                         }
     
-                    });
+                    })
+                    .then(async function(jsonData){
+                        let resultsDataEther = await jsonData;
+                           let {message,result} = resultsDataEther
+                           
+                           if (message === "OK") {
+                              newResults = await result
+                               //console.log(newResults)
+                               return newResults
+           
+                           }
+       
+                   })
                 this.setState({transactionResults : newResults,isLoading : false})
+                this.setState({transactionResults : newResults})
                 //intervalId = setInterval(this.getdetailsFromUrl, 5000);
 
             }
 
         }
 
-        getTransactionsFromEther20 = async() =>{
-            let ercUrl = "https://api.etherscan.io/api?module=account&action=tokentx&address=" + input + "&page=1&offset=100&startblock=0&endblock=27025780&sort=desc&apikey=" + apiKey
-            //console.log(ercUrl)
+        // getTransactionsFromEther20 = async() =>{
+        //     let ercUrl = "https://api.etherscan.io/api?module=account&action=tokentx&address=" + input + "&page=1&offset=100&startblock=0&endblock=27025780&sort=desc&apikey=" + apiKey
+        //     //console.log(ercUrl)
 
-            await fetch(ercUrl,options)
-            .then(function(response){
-                return response.json()
-            })
+        //     await fetch(ercUrl,options)
+        //     .then(function(response){
+        //         return response.json()
+        //     })
 
-            .then(async function(jsonData){
-                 let resultsDataEther = await jsonData;
-                    let {message,result} = resultsDataEther
+        //     .then(async function(jsonData){
+        //          let resultsDataEther = await jsonData;
+        //             let {message,result} = resultsDataEther
                     
-                    if (message === "OK") {
-                       newResults = await result
-                        //console.log(newResults)
-                        return newResults
+        //             if (message === "OK") {
+        //                newResults = await result
+        //                 //console.log(newResults)
+        //                 return newResults
     
-                    }
+        //             }
 
-            })
-            this.setState({transactionResults : newResults})
-            //intervalId = setInterval(this.getTransactionsFromEther20, 5000);
+        //     })
+        //     this.setState({transactionResults : newResults})
+        //     //intervalId = setInterval(this.getTransactionsFromEther20, 5000);
 
-        }
+        // }
             
         getTransactionType=(from)=>{
             if(from.toString().toLowerCase() === input.toString().toLowerCase()){
@@ -114,37 +129,36 @@ class Etherscan extends Component {
 
         }
 
-        getTransactionsFromUrl = () =>{
-           // intervalId = setInterval(this.getdetailsFromUrl, 3000);
-            clearInterval(etherInterval)
-            clearInterval(a)
-        }
+        // getTransactionsFromUrl = () =>{
+        //    // intervalId = setInterval(this.getdetailsFromUrl, 3000);
+        //     clearInterval(etherInterval)
+        //     clearInterval(a)
+        // }
 
-        getTransactionsFromEther20Url = () => {
-            etherInterval = setInterval(this.getTransactionsFromEther20, 2000);
-            clearInterval(intervalId)
-            clearInterval(a)
+        // getTransactionsFromEther20Url = () => {
+        //     etherInterval = setInterval(this.getTransactionsFromEther20, 2000);
+        //     clearInterval(intervalId)
+        //     clearInterval(a)
 
-        }
+        // }
 
 
 
-        updateActiveTab = (id) =>{
-            const {activeTabId} = this.state
-            const activeTabDisplay = activeTabId.displayText
+        // updateActiveTab = (id) =>{
+        //     const {activeTabId} = this.state
+        //     const activeTabDisplay = activeTabId.displayText
 
-            activeTabDisplay !== "Internal Transactions" ? this.getTransactionsFromUrl() : this.getTransactionsFromEther20Url()
-            this.setState({activeTabId : transactionTabs[id],transactionResults : newResults})
-            //console.log(activeTabId)    
-        }
+        //     //activeTabDisplay !== "All Transactions" ? this.getTransactionsFromUrl() : this.getTransactionsFromEther20Url()
+        //     //this.setState({activeTabId : transactionTabs[id],transactionResults : newResults})
+        //     //console.log(activeTabId)    
+        // }
 
         getTableInternalTransactions =() =>{
             const {transactionResults,activeTabId,isLoading} = this.state
             const activeTabDisplay = activeTabId.displayText
             
             return(
-                <>
-                <h1 className="active-tabs" style={{"text-align":"center"}}>{activeTabDisplay}</h1>        
+                <>      
                         <table>
                             <thead>
                                 <tr>
@@ -177,8 +191,7 @@ class Etherscan extends Component {
             //console.log(transactionResults)
 
             return(
-                <>
-                <h1 className="active-tabs" style={{"text-align":"center"}}>{activeTabDisplay}</h1>        
+                <>     
                         <table>
                             <thead>
                                 <tr>
@@ -214,7 +227,7 @@ class Etherscan extends Component {
 
 
         render(){
-            const {transactionResults,activeTabId,isLoading}  = this.state;
+            const {transactionResults}  = this.state;
             //console.log(activeTabId)
             
             //console.log(transactionResults)
@@ -281,13 +294,12 @@ class Etherscan extends Component {
                                 </li>
                             </ul>
                         </div>
-                        <ul className="button-tabs-container">
-                            {transactionTabs.map(eachTab =>(
-                                <ActiveTabs key={eachTab.id} tabDetails={eachTab} updateActiveTab = {this.updateActiveTab} isActive={eachTab.id === activeTabId.id} isLoading={isLoading}/>
-                            ))}
-                        </ul>
+                        <div className="button-tabs-container">
+                            <h1>All Transactions</h1>
+                        </div>
                         
-                        {activeTabId.displayText === "Internal Transactions" ? this.getTableInternalTransactions() : this.getTableEth20Transactions()}    
+                        {this.getTableInternalTransactions()}
+                        {this.getTableEth20Transactions()}    
                         
                     </div>
                 </div> 

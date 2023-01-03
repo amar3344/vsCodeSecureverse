@@ -3,17 +3,17 @@
   
 }
 
-.from-Bsc {
+/* .from-Bsc {
   max-width: 171px;
   display: inline-block;
   vertical-align: bottom;
-}
+} */
 
-.text-overflow {
+/* .text-overflow {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-}
+} */
 
 td, td:hover {
   text-decoration: none;
@@ -50,7 +50,6 @@ td {
 
 table {
   width: 100%;
-  text-indent: initial;
   border-spacing: 2px;
 }
 
