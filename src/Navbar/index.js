@@ -24,11 +24,6 @@ const Navbar = ()=>{
                     Bscscan
                     </Link>
                 </li>         
-                <li className="link-bars nav-buttons">
-                    <Link to="/tronscan" style={{"text-decoration":"none"}}>
-                    Tronscan
-                    </Link>
-                </li>    
                 <li className="link-bars">
                     <Link to="/Auth" style={{"text-decoration":"none"}} className="login-btn">
                     Login

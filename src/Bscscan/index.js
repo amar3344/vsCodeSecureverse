@@ -37,7 +37,7 @@ let transactionTabs = [
 ]
 
 class Bscscan extends Component {
-    state = {transactionResults :[],message : "",activeTabId:transactionTabs[0],isLoading:false}
+    state = {transactionResults :[],message : "",activeTabId:transactionTabs[0],isLoading:false,disabledButton:true}
 
 
     
@@ -66,8 +66,8 @@ class Bscscan extends Component {
                         }
     
                     });
-                this.setState({transactionResults : newResults,isLoading : false})
-                //intervalId = setInterval(this.getdetailsFromUrl, 5000);
+                this.setState({transactionResults : newResults,isLoading : false,disabledButton:false})
+                // intervalId = setInterval(this.getdetailsFromUrl, 5000);
 
             }
 
@@ -94,8 +94,8 @@ class Bscscan extends Component {
                     }
 
             })
-            this.setState({transactionResults : newResults})
-            //intervalId = setInterval(this.getTransactionsFromEther20, 5000);
+            this.setState({transactionResults : newResults,isLoading:false})
+            // intervalId = setInterval(this.getTransactionsFromEther20, 5000);
 
         }
             
@@ -113,7 +113,7 @@ class Bscscan extends Component {
         }
 
         getTransactionsFromUrl = () =>{
-           // intervalId = setInterval(this.getdetailsFromUrl, 3000);
+            intervalId = setInterval(this.getdetailsFromUrl, 3000);
             clearInterval(etherInterval)
             clearInterval(a)
         }
@@ -212,7 +212,7 @@ class Bscscan extends Component {
 
 
         render(){
-            const {transactionResults,activeTabId,isLoading}  = this.state;
+            const {transactionResults,activeTabId,isLoading,disabledButton}  = this.state;
             //console.log(activeTabId)
             
             //console.log(transactionResults)
@@ -281,7 +281,7 @@ class Bscscan extends Component {
                         </div>
                         <ul className="button-tabs-container">
                             {transactionTabs.map(eachTab =>(
-                                <ActiveTabs key={eachTab.id} tabDetails={eachTab} updateActiveTab = {this.updateActiveTab} isActive={eachTab.id === activeTabId.id} isLoading={isLoading}/>
+                                <ActiveTabs key={eachTab.id} tabDetails={eachTab} updateActiveTab = {this.updateActiveTab} isActive={eachTab.id === activeTabId.id} isLoading={isLoading} buttonDisable={disabledButton}/>
                             ))}
                         </ul>
                         

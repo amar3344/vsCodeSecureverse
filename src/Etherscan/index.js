@@ -34,7 +34,7 @@ let transactionTabs = [
 ]
 
 class Etherscan extends Component {
-    state = {transactionResults :[],message : "",activeTabId:transactionTabs[0],isLoading:false}
+    state = {transactionResults :[],message : "",activeTabId:transactionTabs[0],isLoading:false,disabledButton:true}
 
 
     
@@ -45,19 +45,12 @@ class Etherscan extends Component {
             else{
                 let url = "https://api.etherscan.io/api?module=account&action=txlist&address=" + input + "&startblock=0&endblock=99999999&page=1&offset=10&sort=desc&apikey=" + apiKey;
                 //console.log(url);
-                let ercUrl = "https://api.etherscan.io/api?module=account&action=tokentx&address=" + input + "&page=1&offset=10&startblock=0&endblock=27025780&sort=desc&apikey=" + apiKey
 
             
                 await fetch(url, options)
                     .then(function(response) {
                         return response.json();
                     })
-
-                await fetch(ercUrl,options)
-                    .then(function(response){
-                        return response.json()
-                    })
-    
     
                     .then(async function(jsonData) {
                         let resultsData = await jsonData;
@@ -70,51 +63,38 @@ class Etherscan extends Component {
                         }
     
                     })
-                    .then(async function(jsonData){
-                        let resultsDataEther = await jsonData;
-                           let {message,result} = resultsDataEther
-                           
-                           if (message === "OK") {
-                              newResults = await result
-                               //console.log(newResults)
-                               return newResults
-           
-                           }
-       
-                   })
-                this.setState({transactionResults : newResults,isLoading : false})
-                this.setState({transactionResults : newResults})
+                this.setState({transactionResults : newResults,isLoading : false,disabledButton:false})
                 //intervalId = setInterval(this.getdetailsFromUrl, 5000);
 
             }
 
         }
 
-        // getTransactionsFromEther20 = async() =>{
-        //     let ercUrl = "https://api.etherscan.io/api?module=account&action=tokentx&address=" + input + "&page=1&offset=100&startblock=0&endblock=27025780&sort=desc&apikey=" + apiKey
-        //     //console.log(ercUrl)
+        getTransactionsFromEther20 = async() =>{
+            let ercUrl = "https://api.etherscan.io/api?module=account&action=tokentx&address=" + input + "&page=1&offset=100&startblock=0&endblock=27025780&sort=desc&apikey=" + apiKey
+            //console.log(ercUrl)
 
-        //     await fetch(ercUrl,options)
-        //     .then(function(response){
-        //         return response.json()
-        //     })
+            await fetch(ercUrl,options)
+            .then(function(response){
+                return response.json()
+            })
 
-        //     .then(async function(jsonData){
-        //          let resultsDataEther = await jsonData;
-        //             let {message,result} = resultsDataEther
+            .then(async function(jsonData){
+                 let resultsDataEther = await jsonData;
+                    let {message,result} = resultsDataEther
                     
-        //             if (message === "OK") {
-        //                newResults = await result
-        //                 //console.log(newResults)
-        //                 return newResults
+                    if (message === "OK") {
+                       newResults = await result
+                        //console.log(newResults)
+                        return newResults
     
-        //             }
+                    }
 
-        //     })
-        //     this.setState({transactionResults : newResults})
-        //     //intervalId = setInterval(this.getTransactionsFromEther20, 5000);
+            })
+            this.setState({transactionResults : newResults})
+            //intervalId = setInterval(this.getTransactionsFromEther20, 5000);
 
-        // }
+        }
             
         getTransactionType=(from)=>{
             if(from.toString().toLowerCase() === input.toString().toLowerCase()){
@@ -129,29 +109,29 @@ class Etherscan extends Component {
 
         }
 
-        // getTransactionsFromUrl = () =>{
-        //    // intervalId = setInterval(this.getdetailsFromUrl, 3000);
-        //     clearInterval(etherInterval)
-        //     clearInterval(a)
-        // }
+        getTransactionsFromUrl = () =>{
+           // intervalId = setInterval(this.getdetailsFromUrl, 3000);
+            clearInterval(etherInterval)
+            clearInterval(a)
+        }
 
-        // getTransactionsFromEther20Url = () => {
-        //     etherInterval = setInterval(this.getTransactionsFromEther20, 2000);
-        //     clearInterval(intervalId)
-        //     clearInterval(a)
+        getTransactionsFromEther20Url = () => {
+            etherInterval = setInterval(this.getTransactionsFromEther20, 2000);
+            clearInterval(intervalId)
+            clearInterval(a)
 
-        // }
+        }
 
 
 
-        // updateActiveTab = (id) =>{
-        //     const {activeTabId} = this.state
-        //     const activeTabDisplay = activeTabId.displayText
+        updateActiveTab = (id) =>{
+            const {activeTabId} = this.state
+            const activeTabDisplay = activeTabId.displayText
 
-        //     //activeTabDisplay !== "All Transactions" ? this.getTransactionsFromUrl() : this.getTransactionsFromEther20Url()
-        //     //this.setState({activeTabId : transactionTabs[id],transactionResults : newResults})
-        //     //console.log(activeTabId)    
-        // }
+            activeTabDisplay !== "All Transactions" ? this.getTransactionsFromUrl() : this.getTransactionsFromEther20Url()
+            this.setState({activeTabId : transactionTabs[id],transactionResults : newResults})
+            console.log(activeTabId)    
+        }
 
         getTableInternalTransactions =() =>{
             const {transactionResults,activeTabId,isLoading} = this.state
